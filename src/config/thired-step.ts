@@ -27,7 +27,7 @@ const config = {
 }
 
 export const sellerReviewConfig = Object.assign(
-  config,
+  { config },
   { components },
   { scopes },
 )

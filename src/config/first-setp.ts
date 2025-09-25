@@ -116,7 +116,7 @@ const config = {
 }
 
 export const sellerInformationConfig = Object.assign(
-  config,
+  { config },
   { components },
   { scopes },
 )

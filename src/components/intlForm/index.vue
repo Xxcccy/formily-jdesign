@@ -16,33 +16,28 @@
         border-top: 1px solid #f0f0f0;
       "
     >
-      <JdButton
-        @click="
-          () => {
-            formStep.back()
-          }
-        "
-      >
-        上一步
-      </JdButton>
-      <JdButton
-        type="primary"
-        @click="
-          () => {
-            formStep.next()
-          }
-        "
-      >
-        下一步
-      </JdButton>
-      <JdButton @click="submit" type="primary">提交</JdButton>
+      <FormConsumer>
+        <template #default>
+          <JdButton :disabled="!formStep.allowBack" @click="back">
+            上一步
+          </JdButton>
+          <JdButton
+            :disabled="!formStep.allowNext"
+            type="primary"
+            @click="next"
+          >
+            下一步
+          </JdButton>
+          <JdButton @click="submit" type="primary">提交</JdButton>
+        </template>
+      </FormConsumer>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { createForm } from '@formily/core'
-import { createSchemaField, FormProvider } from '@formily/vue'
+import { createSchemaField, FormConsumer, FormProvider } from '@formily/vue'
 import { JdButton } from '@jd/jdesign-vue'
 import {
   businessInformationConfig,
@@ -69,9 +64,9 @@ const schema = {
         'finish-status': 'success',
       },
       properties: {
-        sellerInformation: sellerInformationConfig,
-        businessInformation: businessInformationConfig,
-        sellerReview: sellerReviewConfig,
+        sellerInformation: sellerInformationConfig.config,
+        businessInformation: businessInformationConfig.config,
+        sellerReview: sellerReviewConfig.config,
       },
     },
   },
@@ -92,6 +87,15 @@ const { SchemaField } = createSchemaField({
     ...sellerReviewConfig.scopes,
   },
 })
+
+const back = () => {
+  formStep.back()
+}
+
+const next = () => {
+  formStep.next()
+}
+
 const submit = () => {
   form.validate()
   console.log(JSON.parse(JSON.stringify(form.values)))

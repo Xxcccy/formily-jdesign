@@ -34,7 +34,7 @@ const config = {
 }
 
 export const businessInformationConfig = Object.assign(
-  config,
+  { config },
   { components },
   { scopes },
 )
