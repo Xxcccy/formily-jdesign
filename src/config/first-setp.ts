@@ -3,7 +3,7 @@ import IntlInput from '../components/intlInput'
 import IntlSelect from '../components/intlSelect'
 import IntlUpload from '../components/intlUpload'
 import Title from '../components/title'
-import { FormStep, Input } from '../formily-dongdesign'
+import { FormStep } from '../formily-dongdesign'
 
 // 注册组件
 const components = {

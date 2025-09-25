@@ -10,12 +10,19 @@ export default defineConfig(() => {
       },
     },
     plugins: [vue()],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler',
+          silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin'],
+        },
+      },
+    },
     build: {
       chunkSizeWarningLimit: 1000,
       rollupOptions: {
         output: {
-          // 配置最大chunk大小，超过1000kb时自动分割
-          maxSize: 1000 * 1024, // 1000kb
+          // 配置chunk分割策略
           manualChunks(id) {
             if (id.includes('node_modules')) {
               if (id.includes('vue') && !id.includes('jdesign')) {
