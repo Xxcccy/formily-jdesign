@@ -1,11 +1,13 @@
 import IntlFormItem from '../components/intlFormItem'
+import IntlInput from '../components/intlInput'
 import IntlSelectModel from '../components/intlSelectModel'
 import { FormStep } from '../formily-dongdesign'
 
 const components = {
   FormStep,
-  IntlSelectModel,
+  IntlInput,
   IntlFormItem,
+  IntlSelectModel,
 }
 
 const scopes = {}
@@ -26,7 +28,7 @@ const config = {
       type: 'string',
       title: 'BBB',
       'x-decorator': 'IntlFormItem',
-      'x-component': 'Input',
+      'x-component': 'IntlInput',
     },
   },
 }

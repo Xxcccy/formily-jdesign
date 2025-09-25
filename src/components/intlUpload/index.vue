@@ -14,7 +14,7 @@ import { Upload } from '../../formily-dongdesign'
 import { useAttrs } from 'vue'
 
 defineOptions({
-  name: 'IntlUpload',
+  name: 'Upload',
 })
 
 const attrs = useAttrs()

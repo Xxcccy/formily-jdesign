@@ -1,7 +1,7 @@
 import { connect, mapProps } from '@formily/vue'
-import { JdInput } from '@jd/jdesign-vue'
 import { mapVModel } from '../../utils'
+import Input from './index.vue'
 
-const IntlInput = connect(JdInput, mapProps(mapVModel))
+const IntlInput = connect(Input, mapProps(mapVModel))
 
 export default IntlInput

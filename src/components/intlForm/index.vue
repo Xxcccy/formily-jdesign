@@ -53,7 +53,7 @@ import {
 import { FormStep } from '../../formily-dongdesign'
 
 defineOptions({
-  name: 'IntlForm',
+  name: 'Form',
 })
 
 const form = createForm()

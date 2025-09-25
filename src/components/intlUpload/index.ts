@@ -1,3 +1,5 @@
-import IntlUpload from './index.vue'
+import Upload from './index.vue'
+
+const IntlUpload = Upload
 
 export default IntlUpload

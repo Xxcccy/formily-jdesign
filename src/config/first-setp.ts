@@ -2,17 +2,17 @@ import IntlFormItem from '../components/intlFormItem'
 import IntlInput from '../components/intlInput'
 import IntlSelect from '../components/intlSelect'
 import IntlUpload from '../components/intlUpload'
-import Title from '../components/title'
+import IntlTitle from '../components/intlTitle'
 import { FormStep } from '../formily-dongdesign'
 
 // 注册组件
 const components = {
+  IntlTitle,
   FormStep,
-  IntlFormItem,
   IntlInput,
   IntlSelect,
-  Title,
   IntlUpload,
+  IntlFormItem,
 }
 
 const title = 'Invitation Code'
@@ -58,7 +58,6 @@ const config = {
       },
       'x-component-props': {
         maxlength: 5,
-        showWordLimit: true,
       },
     },
     legalEntityType: {
@@ -66,7 +65,7 @@ const config = {
       properties: {
         subTitle: {
           type: 'void',
-          'x-component': 'Title',
+          'x-component': 'IntlTitle',
           'x-content': 'Legal Entity Type',
         },
         region: {
@@ -98,7 +97,7 @@ const config = {
       properties: {
         subTitle: {
           type: 'void',
-          'x-component': 'Title',
+          'x-component': 'IntlTitle',
           'x-content': 'Company Information',
         },
         certificate: {

@@ -1,16 +1,5 @@
-import { connect, mapProps } from '@formily/vue'
-import { Select } from '../../formily-dongdesign'
+import Select from './index.vue'
 
-const IntlSelect = connect(
-  Select,
-  mapProps(({ style, ...props }) => {
-    return {
-      ...props,
-      style: {
-        width: '100%',
-      },
-    }
-  }),
-)
+const IntlSelect = Select
 
 export default IntlSelect

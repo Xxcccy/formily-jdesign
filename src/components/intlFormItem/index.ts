@@ -1,18 +1,5 @@
-import { connect, mapProps } from '@formily/vue'
-import { FormItem } from '../../formily-dongdesign'
+import FormItem from './index.vue'
 
-const IntlFormItem = connect(
-  FormItem,
-  mapProps(({ labelWrap, labelWidth, labelAlign, ...props }) => {
-    return {
-      ...props,
-      labelWrap: true,
-      labelAlign: 'left',
-      style: {
-        margin: '0 50px',
-      },
-    }
-  }),
-)
+const IntlFormItem = FormItem
 
 export default IntlFormItem

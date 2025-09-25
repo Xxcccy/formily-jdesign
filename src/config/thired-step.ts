@@ -1,8 +1,10 @@
-import { FormStep } from '../formily-dongdesign'
 import IntlFormItem from '../components/intlFormItem'
+import IntlInput from '../components/intlInput'
+import { FormStep } from '../formily-dongdesign'
 
 const components = {
   FormStep,
+  IntlInput,
   IntlFormItem,
 }
 
@@ -19,7 +21,7 @@ const config = {
       type: 'string',
       title: 'CCC',
       'x-decorator': 'IntlFormItem',
-      'x-component': 'Input',
+      'x-component': 'IntlInput',
     },
   },
 }
