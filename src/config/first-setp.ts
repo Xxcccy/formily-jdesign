@@ -25,7 +25,7 @@ const scopes = {
 }
 
 const invitationCodeValidator = (value) => {
-  doSomething(value)
+  doSomething('validator')
 
   if (!value) return 'please input something'
   return true

@@ -44,7 +44,6 @@
 import { createForm } from '@formily/core'
 import { createSchemaField, FormProvider } from '@formily/vue'
 import { JdButton } from '@jd/jdesign-vue'
-import { ref } from 'vue'
 import {
   businessInformationConfig,
   sellerInformationConfig,
@@ -59,7 +58,7 @@ defineOptions({
 const form = createForm()
 const formStep = FormStep.createFormStep()
 
-const schema = ref<any>({
+const schema = {
   type: 'object',
   properties: {
     step: {
@@ -76,7 +75,7 @@ const schema = ref<any>({
       },
     },
   },
-})
+}
 
 const { SchemaField } = createSchemaField({
   // 注册 Schema 中可能会用到的组件
