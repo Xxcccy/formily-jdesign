@@ -1,0 +1,22 @@
+$formily-prefix: 'formily-jd-design';
+$namespace: 'jd';
+@import './jd-design.scss';
+@import '@jd/jdesign-vue/theme-chalk/src/common/var.scss';
+
+@mixin active {
+  border-color: $--color-primary;
+  outline: 0;
+  border-right-width: $--border-width-base !important;
+}
+
+@mixin hover {
+  border-color: $--border-color-hover;
+  outline: 0;
+  border-right-width: $--border-width-base !important;
+}
+
+$--font-size-extra-small: var(--jd-font-size-extra-small);
+$--font-size-extra-large: var(--jd-font-size-extra-large);
+$--font-size-large: var(--jd-font-size-large);
+$--font-size-medium: var(--jd-font-size-medium);
+$--font-size-small: var(--jd-font-size-small);

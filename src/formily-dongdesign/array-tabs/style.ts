@@ -1,0 +1,5 @@
+import './style.scss'
+import '@jd/jdesign-vue/theme-chalk/src/tabs.scss'
+import '@jd/jdesign-vue/theme-chalk/src/tab-pane.scss'
+import '@jd/jdesign-vue/theme-chalk/src/badge.scss'
+import '@jd/jdesign-vue/theme-chalk/src/button.scss'

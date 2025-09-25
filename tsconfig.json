@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "./lib",
+    "skipLibCheck": true,
+    "paths": {},
+    "plugins": [{ "transform": "./transformer.ts", "after": true }],
+    "lib": ["ESNext", "DOM"],
+    "types": ["node"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"],
+  "exclude": ["./esm/*", "./lib/*"]
+}
