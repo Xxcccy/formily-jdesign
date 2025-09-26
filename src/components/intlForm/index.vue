@@ -37,56 +37,45 @@
 
 <script setup lang="ts">
 import { createForm } from '@formily/core'
-import { createSchemaField, FormConsumer, FormProvider } from '@formily/vue'
+import { FormConsumer, FormProvider, ISchema } from '@formily/vue'
 import { JdButton } from '@jd/jdesign-vue'
 import {
   businessInformationConfig,
   sellerInformationConfig,
   sellerReviewConfig,
 } from '../../config'
-import { FormStep } from '../../formily-dongdesign'
+import { useCreate, useSchemaFiled } from '../../hooks'
 
 defineOptions({
   name: 'Form',
 })
 
 const form = createForm()
-const formStep = FormStep.createFormStep()
+// 初始化 form 数据
+// form.values = {
+//   sellerInformation: {
+//     invitationCode: '123',
+//   },
+// }
+const create = useCreate()
+const step = create.formStep('void')
+const formStep = step.formStepInstance
 
-const schema = {
+const schema: ISchema = {
   type: 'object',
   properties: {
     step: {
-      type: 'void',
-      'x-component': 'FormStep',
-      'x-component-props': {
-        formStep: '{{formStep}}',
-        'finish-status': 'success',
-      },
+      ...step.schema,
       properties: {
-        sellerInformation: sellerInformationConfig.config,
-        businessInformation: businessInformationConfig.config,
-        sellerReview: sellerReviewConfig.config,
+        sellerInformation: sellerInformationConfig,
+        businessInformation: businessInformationConfig,
+        sellerReview: sellerReviewConfig,
       },
     },
   },
 }
 
-const { SchemaField } = createSchemaField({
-  // 注册 Schema 中可能会用到的组件
-  components: {
-    ...sellerInformationConfig.components,
-    ...businessInformationConfig.components,
-    ...sellerReviewConfig.components,
-  },
-  // 注册 Schema 中可能会用到的函数、变量等
-  scope: {
-    formStep,
-    ...sellerInformationConfig.scopes,
-    ...businessInformationConfig.scopes,
-    ...sellerReviewConfig.scopes,
-  },
-})
+const SchemaField = useSchemaFiled(create.components, create.scope)
 
 const back = () => {
   formStep.back()

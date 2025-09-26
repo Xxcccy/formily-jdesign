@@ -1,33 +1,15 @@
-import IntlFormItem from '../components/intlFormItem'
-import IntlInput from '../components/intlInput'
-import { FormStep } from '../formily-dongdesign'
+import type { ISchema } from '@formily/vue'
+import { useCreate } from '../hooks'
 
-const components = {
-  FormStep,
-  IntlInput,
-  IntlFormItem,
-}
+const create = useCreate()
 
-const scopes = {}
-
-const config = {
+export const sellerReviewConfig: ISchema = {
   type: 'object',
   'x-component': 'FormStep.StepPane',
   'x-component-props': {
     title: 'Seller Review',
   },
   properties: {
-    ccc: {
-      type: 'string',
-      title: 'CCC',
-      'x-decorator': 'IntlFormItem',
-      'x-component': 'IntlInput',
-    },
+    ccc: create.input({ title: 'ccc' }),
   },
 }
-
-export const sellerReviewConfig = Object.assign(
-  { config },
-  { components },
-  { scopes },
-)

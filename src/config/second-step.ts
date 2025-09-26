@@ -1,15 +1,6 @@
-import { Field } from '@formily/core'
-import IntlFormItem from '../components/intlFormItem'
-import IntlInput from '../components/intlInput'
-import IntlSelectModel from '../components/intlSelectModel'
-import { FormStep } from '../formily-dongdesign'
-
-const components = {
-  FormStep,
-  IntlInput,
-  IntlFormItem,
-  IntlSelectModel,
-}
+import type { Field } from '@formily/core'
+import type { ISchema } from '@formily/vue'
+import { useCreate } from '../hooks'
 
 const reactions = (field: Field) => {
   field.visible =
@@ -17,32 +8,16 @@ const reactions = (field: Field) => {
       ?.name === 'FLEX POP1'
 }
 
-const scopes = { reactions }
+const create = useCreate()
 
-const config = {
+export const businessInformationConfig: ISchema = {
   type: 'object',
   'x-component': 'FormStep.StepPane',
   'x-component-props': {
     title: 'Business Information',
   },
   properties: {
-    optionsModel: {
-      type: 'object',
-      'x-decorator': 'IntlFormItem',
-      'x-component': 'IntlSelectModel',
-    },
-    bbb: {
-      type: 'string',
-      title: 'BBB',
-      'x-decorator': 'IntlFormItem',
-      'x-component': 'IntlInput',
-      'x-reactions': '{{reactions}}',
-    },
+    optionsModel: create.selectModel('object'),
+    ttt: create.input({ title: 'TTT', reactions }),
   },
 }
-
-export const businessInformationConfig = Object.assign(
-  { config },
-  { components },
-  { scopes },
-)
