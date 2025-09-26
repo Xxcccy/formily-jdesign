@@ -50,11 +50,11 @@ const config = {
       'x-decorator': 'IntlFormItem',
       'x-component': 'IntlInput',
       'x-validator': {
-        triggerType: 'onBlur',
-        validator: invitationCodeValidator,
+        // triggerType: 'onBlur',
+        // validator: invitationCodeValidator,
       },
       'x-decorator-props': {
-        asterisk: true,
+        // asterisk: true,
       },
       'x-component-props': {
         maxlength: 5,

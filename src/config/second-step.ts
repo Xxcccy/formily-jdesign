@@ -1,3 +1,4 @@
+import { Field } from '@formily/core'
 import IntlFormItem from '../components/intlFormItem'
 import IntlInput from '../components/intlInput'
 import IntlSelectModel from '../components/intlSelectModel'
@@ -10,7 +11,13 @@ const components = {
   IntlSelectModel,
 }
 
-const scopes = {}
+const reactions = (field: Field) => {
+  field.visible =
+    field.form.fields['step.businessInformation.optionsModel']['value']
+      ?.name === 'FLEX POP1'
+}
+
+const scopes = { reactions }
 
 const config = {
   type: 'object',
@@ -29,6 +36,7 @@ const config = {
       title: 'BBB',
       'x-decorator': 'IntlFormItem',
       'x-component': 'IntlInput',
+      'x-reactions': '{{reactions}}',
     },
   },
 }
