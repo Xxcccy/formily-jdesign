@@ -21,12 +21,16 @@ body {
 
 #app {
   width: 100%;
-  margin: 0 auto;
-  padding-top: 2rem;
 }
 
 .jd-input__inner {
   font-size: 14px !important;
+}
+
+.formily-jd-design-form-vertical {
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (prefers-color-scheme: light) {

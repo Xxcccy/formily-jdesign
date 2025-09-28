@@ -90,25 +90,25 @@ export interface IFormDialogComponentProps {
 
 export function FormDialog(
   title: IFormDialogProps | DialogTitle,
-  content: FormDialogContent
+  content: FormDialogContent,
 ): IFormDialog
 
 export function FormDialog(
   title: IFormDialogProps | DialogTitle,
   id: string | symbol,
-  content: FormDialogContent
+  content: FormDialogContent,
 ): IFormDialog
 
 export function FormDialog(
   title: DialogTitle,
   id: string,
-  content: FormDialogContent
+  content: FormDialogContent,
 ): IFormDialog
 
 export function FormDialog(
   title: IFormDialogProps | DialogTitle,
   id: string | symbol | FormDialogContent,
-  content?: FormDialogContent
+  content?: FormDialogContent,
 ): IFormDialog {
   if (isFn(id) || isValidElement(id)) {
     content = id as FormDialogContent
@@ -154,10 +154,10 @@ export function FormDialog(
                 resolveComponent(content, {
                   form: env.form,
                 }),
-            }
+            },
           )
       },
-    })
+    }),
   )
 
   const render = (visible = true, resolve?: () => any, reject?: () => any) => {
@@ -212,7 +212,7 @@ export function FormDialog(
               {
                 default: () =>
                   h(FormProvider, { form: env.form }, () =>
-                    h(component, {}, {})
+                    h(component, {}, {}),
                   ),
                 title: () =>
                   h('div', {}, { default: () => resolveComponent(title) }),
@@ -227,7 +227,7 @@ export function FormDialog(
                           {
                             id: PORTAL_TARGET_NAME,
                           },
-                          {}
+                          {},
                         )
                         if (footer === null) {
                           return [null, FooterPortalTarget]
@@ -248,10 +248,10 @@ export function FormDialog(
                             {
                               default: () =>
                                 resolveComponent(
-                                  cancelText || '取消'
+                                  cancelText || '取消',
                                   // t('el.popconfirm.cancelButtonText')
                                 ),
-                            }
+                            },
                           ),
                           h(
                             JdButton,
@@ -267,20 +267,20 @@ export function FormDialog(
                             {
                               default: () =>
                                 resolveComponent(
-                                  okText || '确定'
+                                  okText || '确定',
                                   // t('el.popconfirm.confirmButtonText')
                                 ),
-                            }
+                            },
                           ),
                           FooterPortalTarget,
                         ]
                       },
-                    }
+                    },
                   ),
-              }
+              },
             )
           },
-        })
+        }),
       )
 
       env.app = createApp(ComponentConstructor, {
@@ -317,7 +317,7 @@ export function FormDialog(
       env.promise = new Promise(async (resolve, reject) => {
         try {
           props = await loading(dialogProps.loadingText, () =>
-            applyMiddleware(props, env.openMiddlewares)
+            applyMiddleware(props, env.openMiddlewares),
           )
           env.form = env.form || createForm(props)
         } catch (e) {
@@ -345,7 +345,7 @@ export function FormDialog(
           },
           async () => {
             await loading(dialogProps.loadingText, () =>
-              applyMiddleware(env.form, env.cancelMiddlewares)
+              applyMiddleware(env.form, env.cancelMiddlewares),
             )
 
             if (dialogProps.beforeClose) {
@@ -355,7 +355,7 @@ export function FormDialog(
             } else {
               formDialog.close()
             }
-          }
+          },
         )
       })
       return env.promise
@@ -380,7 +380,7 @@ const FormDialogFooter = defineComponent({
           {
             to: `#${PORTAL_TARGET_NAME}`,
           },
-          slots
+          slots,
         )
       }
     })

@@ -92,7 +92,7 @@ const FormTab = observer(
               class: [`${prefixCls}-errors-badge`],
               value: errors.length,
             },
-            { default: () => props.label }
+            { default: () => props.label },
           )
         }
         return props.label
@@ -130,16 +130,16 @@ const FormTab = observer(
                       h(
                         'div',
                         {},
-                        { default: () => [badgedHeader(name, props)] }
+                        { default: () => [badgedHeader(name, props)] },
                       ),
-                  }
+                  },
                 )
               }),
-          }
+          },
         )
       }
     },
-  })
+  }),
 )
 
 const FormTabPane = defineComponent<IFormTabPaneProps>({

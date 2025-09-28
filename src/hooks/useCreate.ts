@@ -1,15 +1,13 @@
 import { Field } from '@formily/core'
 import { ISchema, SchemaEnum, SchemaTypes } from '@formily/vue'
-import { SchemaTypesEnum } from '../constants'
-import { FormItemProps, FormStep, IFormStep } from '../formily-dongdesign'
-import { components } from '../utils'
-import IntlTitle from '../components/intlTitle'
 import IntlFormItem from '../components/intlFormItem'
 import IntlInput from '../components/intlInput'
 import IntlSelect from '../components/intlSelect'
 import IntlSelectModel from '../components/intlSelectModel'
+import IntlTitle from '../components/intlTitle'
 import IntlUpload from '../components/intlUpload'
-import IntlCard from '../components/intlCard'
+import { SchemaTypesEnum } from '../constants'
+import { FormItemProps, FormLayout } from '../formily-dongdesign'
 
 interface CommonConfig {
   type?: SchemaTypes
@@ -28,19 +26,15 @@ interface SelectConfig extends CommonConfig {
   datasource?: Array<{ label: string; value: any; [key: string]: any }>
 }
 
-interface Step {
-  formStepInstance: IFormStep
-  schema: ISchema
-}
-
 export function useCreate() {
-  const scope = {}
-
-  const title = (content: string): ISchema => {
+  const title = (content: string, size: string = 'default'): ISchema => {
     return {
       type: SchemaTypesEnum.VOID,
       'x-component': IntlTitle,
       'x-content': content,
+      'x-component-props': {
+        size,
+      },
     }
   }
 
@@ -89,36 +83,6 @@ export function useCreate() {
     }
   }
 
-  const stepPane = (type: SchemaTypes, stepPaneLabel: string): ISchema => {
-    return {
-      type,
-      'x-component': 'FormStep.StepPane',
-      'x-component-props': {
-        title: stepPaneLabel,
-      },
-    }
-  }
-
-  const formStep = (type: SchemaTypes, componentProps?: any): Step => {
-    const formStepInstance = FormStep.createFormStep()
-    scope['formStepInstance'] = formStepInstance
-
-    const schema: ISchema = {
-      type,
-      'x-component': FormStep,
-      'x-component-props': {
-        formStep: formStepInstance,
-        'finish-status': 'success',
-        ...componentProps,
-      },
-    }
-
-    return {
-      formStepInstance,
-      schema,
-    }
-  }
-
   const selectModel = (type: SchemaTypes): ISchema => {
     return {
       type,
@@ -145,15 +109,23 @@ export function useCreate() {
     }
   }
 
+  const formLayout = ({
+    type = SchemaTypesEnum.VOID,
+    componentProps,
+  }: CommonConfig): ISchema => {
+    return {
+      type,
+      'x-component': FormLayout,
+      'x-component-props': componentProps,
+    }
+  }
+
   return {
-    components,
-    scope,
     input,
     title,
     select,
-    stepPane,
-    formStep,
     selectModel,
     upload,
+    formLayout,
   }
 }

@@ -15,7 +15,7 @@ const InnerInput = connect(
     value: 'modelValue',
     readOnly: 'readonly',
   }),
-  mapReadPretty(PreviewText.Input)
+  mapReadPretty(PreviewText.Input),
 )
 
 const TextArea = connect(
@@ -26,7 +26,7 @@ const TextArea = connect(
       type: 'textarea',
     }
   }),
-  mapReadPretty(PreviewText.Input)
+  mapReadPretty(PreviewText.Input),
 )
 
 export const Input = composeExport(InnerInput, {

@@ -78,7 +78,7 @@ const createFormCollapse = (defaultActiveKeys?: ActiveKeys) => {
     removeActiveKey(key: ActiveKey) {
       if (Array.isArray(formCollapse.activeKeys)) {
         formCollapse.activeKeys = formCollapse.activeKeys.filter(
-          (item) => item != key
+          (item) => item != key,
         )
       } else {
         formCollapse.activeKeys = ''
@@ -110,7 +110,7 @@ const FormCollapse = observer(
       const schema = useFieldSchema()
       const prefixCls = `${stylePrefix}-form-collapse`
       const formCollapseRef = computed(
-        () => props.formCollapse ?? createFormCollapse()
+        () => props.formCollapse ?? createFormCollapse(),
       )
 
       const takeActiveKeys = (panels: Panels) => {
@@ -133,7 +133,7 @@ const FormCollapse = observer(
               class: [`${prefixCls}-errors-badge`],
               value: errors.length,
             },
-            { default: () => props.title }
+            { default: () => props.title },
           )
         }
         return props.title
@@ -168,17 +168,17 @@ const FormCollapse = observer(
                       h(
                         'span',
                         {},
-                        { default: () => [badgedHeader(name, props)] }
+                        { default: () => [badgedHeader(name, props)] },
                       ),
-                  }
+                  },
                 )
               })
             },
-          }
+          },
         )
       }
     },
-  })
+  }),
 )
 
 export const FormCollapseItem = defineComponent({

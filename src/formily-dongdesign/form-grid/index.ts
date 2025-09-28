@@ -141,11 +141,11 @@ const FormGridInner = observer(
             },
             ref: 'root',
           },
-          slots
+          slots,
         )
       }
     },
-  })
+  }),
 ) as any
 
 const FormGridColumn = observer(
@@ -164,11 +164,11 @@ const FormGridColumn = observer(
           {
             'data-grid-span': props.gridSpan,
           },
-          slots
+          slots,
         )
       }
     },
-  })
+  }),
 )
 
 export const FormGrid = composeExport(FormGridInner, {

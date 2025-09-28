@@ -6,7 +6,7 @@ export type TransferProps = typeof JdTransfer
 
 export const Transfer = connect(
   JdTransfer,
-  mapProps({ dataSource: 'data', value: 'modelValue' })
+  mapProps({ dataSource: 'data', value: 'modelValue' }),
 )
 
 export default Transfer

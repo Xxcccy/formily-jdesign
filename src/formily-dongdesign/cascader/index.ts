@@ -36,11 +36,11 @@ export const Cascader = observer(
               props.onChange(...args)
             },
           },
-          slots
+          slots,
         )
       }
     },
-  })
+  }),
 )
 
 export default Cascader

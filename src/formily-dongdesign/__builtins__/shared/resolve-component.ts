@@ -4,7 +4,7 @@ import { isVnode } from './utils'
 
 export const resolveComponent = (
   child?: SlotTypes,
-  props?: Record<string, any>
+  props?: Record<string, any>,
 ) => {
   if (child) {
     if (typeof child === 'string' || typeof child === 'number') {

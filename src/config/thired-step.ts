@@ -1,14 +1,13 @@
 import type { ISchema } from '@formily/vue'
 import { useCreate } from '../hooks'
+import { SchemaTypesEnum } from '../constants'
+import IntlCard from '../components/intlCard'
 
 const create = useCreate()
 
 export const sellerReviewConfig: ISchema = {
-  type: 'object',
-  'x-component': 'FormStep.StepPane',
-  'x-component-props': {
-    title: 'Seller Review',
-  },
+  type: SchemaTypesEnum.OBJECT,
+  'x-decorator': IntlCard,
   properties: {
     ccc: create.input({ title: 'ccc' }),
   },

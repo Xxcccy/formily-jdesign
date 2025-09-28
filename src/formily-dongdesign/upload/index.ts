@@ -1,11 +1,7 @@
 import { Field } from '@formily/core'
 import { defineComponent, h } from 'vue'
 import { connect, mapProps, useField, FragmentComponent } from '@formily/vue'
-import {
-  UploadCloud,
-  Upload as UploadIcon,
-  Plus,
-} from '@jd/jdesign-icons-vue'
+import { UploadCloud, Upload as UploadIcon, Plus } from '@jd/jdesign-icons-vue'
 import { JdUpload, JdButton, JdIcon } from '@jd/jdesign-vue'
 import type { UploadFile } from '@jd/jdesign-vue/es/components/upload/src/upload'
 
@@ -85,15 +81,15 @@ const UploadWrapper = defineComponent({
                   h(
                     JdIcon,
                     { style: { fontSize: '60px', margin: '40px 0 16px' } },
-                    { default: () => h(UploadCloud, { color: 'gray' }, {}) }
+                    { default: () => h(UploadCloud, { color: 'gray' }, {}) },
                   ),
                   h(
                     'div',
                     { staticClass: 'el-upload__text' },
-                    { default: () => [curProps.textContent] }
+                    { default: () => [curProps.textContent] },
                   ),
                 ],
-              }
+              },
             )
           }
 
@@ -107,7 +103,7 @@ const UploadWrapper = defineComponent({
                   color: 'gray',
                 },
               },
-              {}
+              {},
             )
           }
 
@@ -119,7 +115,7 @@ const UploadWrapper = defineComponent({
                 h(UploadIcon, { style: { width: '12px', height: '12px' } }),
                 curProps.textContent,
               ],
-            }
+            },
           )
         }
       }
@@ -130,7 +126,7 @@ const UploadWrapper = defineComponent({
 
 export const Upload = connect(
   UploadWrapper,
-  mapProps({ readOnly: 'readonly', value: 'fileList' })
+  mapProps({ readOnly: 'readonly', value: 'fileList' }),
 )
 
 export default Upload

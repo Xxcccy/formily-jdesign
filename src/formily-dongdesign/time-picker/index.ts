@@ -9,13 +9,13 @@ const TransformJdTimePicker = transformComponent<TimePickerProps>(
   JdTimePicker,
   {
     change: 'update:modelValue',
-  }
+  },
 )
 
 export const TimePicker = connect(
   TransformJdTimePicker,
   mapProps({ readOnly: 'readonly', value: 'modelValue' }),
-  mapReadPretty(PreviewText.TimePicker)
+  mapReadPretty(PreviewText.TimePicker),
 )
 
 export default TimePicker

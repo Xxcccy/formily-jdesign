@@ -1,5 +1,12 @@
 import { defineComponent, ref, watchEffect, Ref, h } from 'vue'
-import { JdCard, JdCollapse, JdCollapseItem, JdEmpty, JdRow, JdBadge } from '@jd/jdesign-vue'
+import {
+  JdCard,
+  JdCollapse,
+  JdCollapseItem,
+  JdEmpty,
+  JdRow,
+  JdBadge,
+} from '@jd/jdesign-vue'
 import { ArrayField } from '@formily/core'
 import { useField, useFieldSchema, RecursionField } from '@formily/vue'
 import { observer } from '@formily/reactive-vue'
@@ -38,13 +45,20 @@ const isMoveDownComponent = (schema: ISchema) => {
 
 const isOperationComponent = (schema: ISchema) => {
   return (
-    isAdditionComponent(schema) || isRemoveComponent(schema) || isMoveDownComponent(schema) || isMoveUpComponent(schema)
+    isAdditionComponent(schema) ||
+    isRemoveComponent(schema) ||
+    isMoveDownComponent(schema) ||
+    isMoveUpComponent(schema)
   )
 }
 
 const range = (count: number) => Array.from({ length: count }).map((_, i) => i)
 
-const takeDefaultActiveKeys = (dataSourceLength: number, defaultOpenPanelCount: number, accordion = false) => {
+const takeDefaultActiveKeys = (
+  dataSourceLength: number,
+  defaultOpenPanelCount: number,
+  accordion = false,
+) => {
   if (accordion) {
     return 0
   }
@@ -53,9 +67,14 @@ const takeDefaultActiveKeys = (dataSourceLength: number, defaultOpenPanelCount: 
   return range(defaultOpenPanelCount)
 }
 
-const insertActiveKeys = (activeKeys: number[] | number, index: number, accordion = false) => {
+const insertActiveKeys = (
+  activeKeys: number[] | number,
+  index: number,
+  accordion = false,
+) => {
   if (accordion) return index
-  if ((activeKeys as number[]).length <= index) return (activeKeys as number[]).concat(index)
+  if ((activeKeys as number[]).length <= index)
+    return (activeKeys as number[]).concat(index)
   return (activeKeys as number[]).reduce((buf, key) => {
     if (key < index) return buf.concat(key)
     if (key === index) return buf.concat([key, key + 1])
@@ -87,7 +106,7 @@ export const ArrayCollapseInner = observer(
           activeKeys.value = takeDefaultActiveKeys(
             dataSource.length,
             props.defaultOpenPanelCount,
-            attrs.accordion as boolean
+            attrs.accordion as boolean,
           )
         }
       })
@@ -106,9 +125,13 @@ export const ArrayCollapseInner = observer(
           }
 
           const items = dataSource?.map((item, index) => {
-            const items = Array.isArray(schema.items) ? schema.items[index] || schema.items[0] : schema.items
+            const items = Array.isArray(schema.items)
+              ? schema.items[index] || schema.items[0]
+              : schema.items
             const key = getKey(item, index)
-            const panelProps = field.query(`${field.address}.${index}`).get('componentProps')
+            const panelProps = field
+              .query(`${field.address}.${index}`)
+              .get('componentProps')
             const props: JdCollapseItemProps = items?.['x-component-props']
             const headerTitle = panelProps?.title || props.title || field.title
             const path = field.address.concat(index)
@@ -136,7 +159,7 @@ export const ArrayCollapseInner = observer(
                       },
                       onlyRenderProperties: true,
                     },
-                    {}
+                    {},
                   ),
                   errors.length
                     ? h(
@@ -145,11 +168,11 @@ export const ArrayCollapseInner = observer(
                           class: [`${prefixCls}-errors-badge`],
                           value: errors.length,
                         },
-                        { default: () => headerTitle }
+                        { default: () => headerTitle },
                       )
                     : headerTitle,
                 ],
-              }
+              },
             )
             const extra = h(
               ArrayBase.Item,
@@ -170,10 +193,10 @@ export const ArrayCollapseInner = observer(
                       },
                       onlyRenderProperties: true,
                     },
-                    {}
+                    {},
                   ),
                 ],
-              }
+              },
             )
             const content = h(
               RecursionField,
@@ -186,7 +209,7 @@ export const ArrayCollapseInner = observer(
                   return true
                 },
               },
-              {}
+              {},
             )
 
             return h(
@@ -207,7 +230,7 @@ export const ArrayCollapseInner = observer(
                     },
                     {
                       default: () => [content],
-                    }
+                    },
                   ),
                 ],
                 title: () => {
@@ -225,10 +248,10 @@ export const ArrayCollapseInner = observer(
                         h('span', {}, title),
                         h('span', {}, extra),
                       ],
-                    }
+                    },
                   )
                 },
-              }
+              },
             )
           })
 
@@ -244,7 +267,7 @@ export const ArrayCollapseInner = observer(
             },
             {
               default: () => [items],
-            }
+            },
           )
         }
         const renderAddition = () => {
@@ -256,7 +279,7 @@ export const ArrayCollapseInner = observer(
                   schema,
                   name: 'addition',
                 },
-                {}
+                {},
               )
             }
             return addition
@@ -273,8 +296,9 @@ export const ArrayCollapseInner = observer(
               header: attrs.title || field.title,
             },
             {
-              default: () => h(JdEmpty, { description: 'No Data', imageSize: 100 }, {}),
-            }
+              default: () =>
+                h(JdEmpty, { description: 'No Data', imageSize: 100 }, {}),
+            },
           )
         }
 
@@ -288,17 +312,21 @@ export const ArrayCollapseInner = observer(
             {
               keyMap,
               add: (index: number) => {
-                activeKeys.value = insertActiveKeys(activeKeys.value, index, attrs.accordion as boolean)
+                activeKeys.value = insertActiveKeys(
+                  activeKeys.value,
+                  index,
+                  attrs.accordion as boolean,
+                )
               },
             },
             {
               default: () => [renderEmpty(), renderItems(), renderAddition()],
-            }
-          )
+            },
+          ),
         )
       }
     },
-  })
+  }),
 )
 
 export const ArrayCollapseItem = defineComponent<JdCollapseItemProps>({

@@ -45,25 +45,29 @@ export const Form = defineComponent({
           },
           {
             default: () => [
-              h(FormLayout, { attrs }, {
-                default: () => [
-                  h(
-                    component,
-                    {
-                      onSubmit: (e: Event) => {
-                        e?.stopPropagation?.()
-                        e?.preventDefault?.()
-                        form
-                          .submit(onAutoSubmit as (e: any) => void)
-                          .catch(onAutoSubmitFailed as (e: any) => void)
+              h(
+                FormLayout,
+                { attrs },
+                {
+                  default: () => [
+                    h(
+                      component,
+                      {
+                        onSubmit: (e: Event) => {
+                          e?.stopPropagation?.()
+                          e?.preventDefault?.()
+                          form
+                            .submit(onAutoSubmit as (e: any) => void)
+                            .catch(onAutoSubmitFailed as (e: any) => void)
+                        },
                       },
-                    },
-                    slots
-                  ),
-                ],
-              }),
+                      slots,
+                    ),
+                  ],
+                },
+              ),
             ],
-          }
+          },
         )
       }
 
@@ -73,7 +77,7 @@ export const Form = defineComponent({
           { form },
           {
             default: () => renderContent(form),
-          }
+          },
         )
       }
 

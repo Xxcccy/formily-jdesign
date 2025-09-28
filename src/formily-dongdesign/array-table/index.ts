@@ -54,7 +54,7 @@ type ColumnProps = JdColumnProps & {
   key: string | number
   asterisk: boolean
   render?: (
-    startIndex?: Ref<number>
+    startIndex?: Ref<number>,
   ) => (props: {
     row: Record<string, any>
     column: JdColumnProps
@@ -76,7 +76,7 @@ const isAdditionComponent = (schema: Schema) => {
 
 const getArrayTableSources = (
   arrayFieldRef: Ref<ArrayField>,
-  schemaRef: Ref<Schema>
+  schemaRef: Ref<Schema>,
 ) => {
   const arrayField = arrayFieldRef.value
   const parseSources = (schema: Schema): ObservableColumnSource[] => {
@@ -138,13 +138,13 @@ const getArrayTableSources = (
 }
 
 const getArrayTableColumns = (
-  sources: ObservableColumnSource[]
+  sources: ObservableColumnSource[],
 ): ColumnProps[] => {
   return sources.reduce(
     (
       buf: ColumnProps[],
       { name, columnProps, schema, display, required },
-      key
+      key,
     ) => {
       const { title, asterisk, ...props } = columnProps
       if (display !== 'visible') return buf
@@ -172,10 +172,10 @@ const getArrayTableColumns = (
                         name: index,
                         onlyRenderProperties: true,
                       },
-                      {}
+                      {},
                     )
                   },
-                }
+                },
               )
               return children
             }
@@ -190,7 +190,7 @@ const getArrayTableColumns = (
         render,
       })
     },
-    []
+    [],
   )
 }
 
@@ -204,7 +204,7 @@ const renderAddition = () => {
           schema,
           name: 'addition',
         },
-        {}
+        {},
       )
     }
     return addition
@@ -235,7 +235,7 @@ const StatusSelect = observer(
           return Number(
             address
               .slice(address.indexOf(field.address.toString()) + 1)
-              .match(/(\d+)/)?.[1]
+              .match(/(\d+)/)?.[1],
           )
         }
 
@@ -283,18 +283,18 @@ const StatusSelect = observer(
                             {
                               isDot: true,
                             },
-                            { default: () => label }
+                            { default: () => label },
                           )
                         }
 
                         return label
                       },
-                    }
+                    },
                   )
-                }
+                },
               )
             },
-          }
+          },
         )
       }
     },
@@ -306,7 +306,7 @@ const StatusSelect = observer(
         update()
       }, 100) as unknown as number
     },
-  }
+  },
 )
 
 const ArrayTablePagination = defineComponent({
@@ -353,7 +353,7 @@ const ArrayTablePagination = defineComponent({
                   pageSize: pageSize.value,
                   options: pages.value,
                 },
-                {}
+                {},
               ),
               h(
                 JdPagination,
@@ -368,11 +368,11 @@ const ArrayTablePagination = defineComponent({
                     current.value = val
                   },
                 },
-                {}
+                {},
               ),
             ],
-          }
-        )
+          },
+        ),
       )
     }
 
@@ -385,9 +385,9 @@ const ArrayTablePagination = defineComponent({
             slots?.default?.(
               dataSource.value?.slice(startIndex.value, endIndex.value + 1),
               renderPagination,
-              startIndex
+              startIndex,
             ),
-        }
+        },
       )
     }
   },
@@ -428,7 +428,7 @@ const ArrayTableInner = observer(
                   h(
                     'span',
                     { class: `${prefixCls}-asterisk` },
-                    '*'
+                    '*',
                     // { default: () => ['*'] }
                   ),
                   column.label,
@@ -440,7 +440,7 @@ const ArrayTableInner = observer(
                 ...props,
                 key,
               },
-              children
+              children,
             )
           })
         }
@@ -457,14 +457,14 @@ const ArrayTableInner = observer(
                 onlyRenderSelf: true,
                 key,
               },
-              {}
+              {},
             )
           })
 
         const renderTable = (
           dataSource?: any[],
           pager?: () => VNode,
-          startIndex?: Ref<number>
+          startIndex?: Ref<number>,
         ) => {
           return h(
             'div',
@@ -486,14 +486,14 @@ const ArrayTableInner = observer(
                     {
                       ...slots,
                       default: () => renderColumns(startIndex),
-                    }
+                    },
                   ),
                   pager?.(),
                   renderStateManager(),
                   renderAddition(),
                 ],
-              }
-            )
+              },
+            ),
           )
         }
 
@@ -506,11 +506,11 @@ const ArrayTableInner = observer(
             ...(isBool(pagination) ? {} : pagination),
             dataSource,
           },
-          { default: renderTable }
+          { default: renderTable },
         )
       }
     },
-  })
+  }),
 )
 
 const ArrayTableColumn: Component = {

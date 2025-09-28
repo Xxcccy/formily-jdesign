@@ -10,7 +10,7 @@ const TransformJdDatePicker = transformComponent<DatePickerProps>(
   JdDatePicker,
   {
     change: 'update:modelValue',
-  }
+  },
 )
 
 const getDefaultFormat = (props: DatePickerProps, formatType = 'format') => {
@@ -43,9 +43,9 @@ export const DatePicker = connect(
         valueFormat:
           props.valueFormat || getDefaultFormat(props, 'valueFormat'),
       }
-    }
+    },
   ),
-  mapReadPretty(PreviewText.DatePicker)
+  mapReadPretty(PreviewText.DatePicker),
 )
 
 export default DatePicker

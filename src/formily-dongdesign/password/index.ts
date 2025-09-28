@@ -9,7 +9,7 @@ export const Password = connect(
   mapProps((props) => ({
     ...props,
     showPassword: true,
-  }))
+  })),
 )
 
 export default Password

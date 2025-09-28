@@ -43,7 +43,7 @@ export type FormLayoutProps = {
 }
 
 export const FormLayoutDeepContext: InjectionKey<Ref<FormLayoutProps>> = Symbol(
-  'FormLayoutDeepContext'
+  'FormLayoutDeepContext',
 )
 
 export const FormLayoutShallowContext: InjectionKey<Ref<FormLayoutProps>> =
@@ -73,7 +73,7 @@ export const useFormLayout = (): Ref<FormLayoutProps> => {
     },
     {
       deep: true,
-    }
+    },
   )
   return formLayout
 }
@@ -128,7 +128,7 @@ export const FormLayout = defineComponent({
           }
         }
       },
-      { deep: true, immediate: true }
+      { deep: true, immediate: true },
     )
 
     provide(FormLayoutDeepContext, newDeepLayout)
@@ -149,7 +149,7 @@ export const FormLayout = defineComponent({
           ref: 'root',
           class: classNames,
         },
-        slots
+        slots,
       )
     }
   },

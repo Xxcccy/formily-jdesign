@@ -67,10 +67,10 @@ const ArrayItemsInner = observer(
                       h(RecursionField, {
                         schema: items,
                         name: index,
-                      })
+                      }),
                     ),
-                }
-              )
+                },
+              ),
             )
           }
 
@@ -92,7 +92,7 @@ const ArrayItemsInner = observer(
                 }
               },
             },
-            { item: itemSlot }
+            { item: itemSlot },
           )
         }
         const renderAddition = () => {
@@ -124,13 +124,13 @@ const ArrayItemsInner = observer(
                 },
                 {
                   default: () => [renderItems(), renderAddition()],
-                }
+                },
               ),
-          }
+          },
         )
       }
     },
-  })
+  }),
 )
 
 const ArrayItemsItem = defineComponent({
@@ -149,7 +149,7 @@ const ArrayItemsItem = defineComponent({
             return
           },
         },
-        slots
+        slots,
       )
   },
 })

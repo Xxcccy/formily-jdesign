@@ -89,25 +89,25 @@ export interface IFormDrawerComponentProps {
 
 export function FormDrawer(
   title: IFormDrawerProps | DrawerTitle,
-  content: FormDrawerContent
+  content: FormDrawerContent,
 ): IFormDrawer
 
 export function FormDrawer(
   title: IFormDrawerProps | DrawerTitle,
   id: string | symbol,
-  content: FormDrawerContent
+  content: FormDrawerContent,
 ): IFormDrawer
 
 export function FormDrawer(
   title: DrawerTitle,
   id: string,
-  content: FormDrawerContent
+  content: FormDrawerContent,
 ): IFormDrawer
 
 export function FormDrawer(
   title: IFormDrawerProps | DrawerTitle,
   id: string | symbol | FormDrawerContent,
-  content?: FormDrawerContent
+  content?: FormDrawerContent,
 ): {
   forOpen: (middleware: IMiddleware<IFormProps>) => {
     forOpen: (middleware: IMiddleware<IFormProps>) => any
@@ -177,10 +177,10 @@ export function FormDrawer(
                 resolveComponent(content, {
                   form: env.form,
                 }),
-            }
+            },
           )
       },
-    })
+    }),
   )
 
   const render = (visible = true, resolve?: () => any, reject?: () => any) => {
@@ -244,7 +244,7 @@ export function FormDrawer(
                         {
                           class: [`${prefixCls}-body`],
                         },
-                        [h(component, {}, {})] as any
+                        [h(component, {}, {})] as any,
                       ),
                       h(
                         'div',
@@ -258,7 +258,7 @@ export function FormDrawer(
                               {
                                 id: PORTAL_TARGET_NAME,
                               },
-                              {}
+                              {},
                             )
 
                             if (footer === null) {
@@ -283,10 +283,10 @@ export function FormDrawer(
                                 {
                                   default: () =>
                                     resolveComponent(
-                                      cancelText || '取消'
+                                      cancelText || '取消',
                                       // t('el.popconfirm.cancelButtonText')
                                     ),
-                                }
+                                },
                               ),
                               h(
                                 JdButton,
@@ -301,22 +301,22 @@ export function FormDrawer(
                                 {
                                   default: () =>
                                     resolveComponent(
-                                      okText || '确定'
+                                      okText || '确定',
                                       // t('el.popconfirm.confirmButtonText')
                                     ),
-                                }
+                                },
                               ),
                               FooterPortalTarget,
                             ]
                           },
-                        }
+                        },
                       ),
                     ],
                     title: () =>
                       h('div', {}, { default: () => resolveComponent(title) }),
-                  }
+                  },
                 ),
-            }
+            },
           )
         },
       })
@@ -354,7 +354,7 @@ export function FormDrawer(
       env.promise = new Promise(async (resolve, reject) => {
         try {
           props = await loading(drawerProps.loadingText, () =>
-            applyMiddleware(props, env.openMiddlewares)
+            applyMiddleware(props, env.openMiddlewares),
           )
           env.form = env.form || createForm(props)
         } catch (e) {
@@ -382,7 +382,7 @@ export function FormDrawer(
           },
           async () => {
             await loading(drawerProps.loadingText, () =>
-              applyMiddleware(env.form, env.cancelMiddlewares)
+              applyMiddleware(env.form, env.cancelMiddlewares),
             )
 
             if (drawerProps.beforeClose) {
@@ -392,7 +392,7 @@ export function FormDrawer(
             } else {
               formDrawer.close()
             }
-          }
+          },
         )
       })
       return env.promise
@@ -418,7 +418,7 @@ const FormDrawerFooter = defineComponent({
           {
             to: `#${PORTAL_TARGET_NAME}`,
           },
-          slots
+          slots,
         )
       }
     })

@@ -16,7 +16,7 @@ const TransformJdSelect = transformComponent<SelectProps>(JdSelect, {
 const InnerSelect = connect(
   TransformJdSelect,
   mapProps({ value: 'modelValue', readOnly: 'readonly' }),
-  mapReadPretty(PreviewText.Select)
+  mapReadPretty(PreviewText.Select),
 )
 
 const SelectOption = defineComponent({
@@ -39,7 +39,7 @@ const SelectOption = defineComponent({
                           slots?.option?.({
                             option: { label: option, value: option },
                           }) ?? option,
-                      }
+                      },
                     )
                   } else {
                     return h(
@@ -53,7 +53,7 @@ const SelectOption = defineComponent({
                           slots?.option?.({ option }) ??
                           option.label ??
                           option.value,
-                      }
+                      },
                     )
                   }
                 }),
@@ -64,7 +64,7 @@ const SelectOption = defineComponent({
         {
           ...attrs,
         },
-        children
+        children,
       )
     }
   },
@@ -73,7 +73,7 @@ const SelectOption = defineComponent({
 export const Select = connect(
   SelectOption,
   mapProps({ dataSource: 'options', loading: true }),
-  mapReadPretty(PreviewText.Select)
+  mapReadPretty(PreviewText.Select),
 )
 
 export default Select

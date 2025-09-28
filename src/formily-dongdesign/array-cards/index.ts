@@ -75,11 +75,11 @@ const ArrayCardsInner = observer(
                       },
                       onlyRenderProperties: true,
                     },
-                    {}
+                    {},
                   ),
                   attrs.title || field.title,
                 ],
-              }
+              },
             )
             const extra = h(
               'span',
@@ -97,11 +97,11 @@ const ArrayCardsInner = observer(
                       },
                       onlyRenderProperties: true,
                     },
-                    {}
+                    {},
                   ),
                   attrs.extra,
                 ],
-              }
+              },
             )
             const content = h(
               RecursionField,
@@ -114,7 +114,7 @@ const ArrayCardsInner = observer(
                   return true
                 },
               },
-              {}
+              {},
             )
             return h(
               ArrayBase.Item,
@@ -143,11 +143,11 @@ const ArrayCardsInner = observer(
                           },
                           {
                             default: () => [title, extra],
-                          }
+                          },
                         ),
-                    }
+                    },
                   ),
-              }
+              },
             )
           })
         }
@@ -160,7 +160,7 @@ const ArrayCardsInner = observer(
                   schema,
                   name: 'addition',
                 },
-                {}
+                {},
               )
             }
             return addition
@@ -181,9 +181,9 @@ const ArrayCardsInner = observer(
                 h(
                   JdEmpty,
                   { props: { description: 'No Data', imageSize: 100 } },
-                  {}
+                  {},
                 ),
-            }
+            },
           )
         }
 
@@ -201,12 +201,12 @@ const ArrayCardsInner = observer(
               default: () => {
                 return [renderEmpty(), renderItems(), renderAddition()]
               },
-            }
-          )
+            },
+          ),
         )
       }
     },
-  })
+  }),
 )
 
 export const ArrayCards = composeExport(ArrayCardsInner, {

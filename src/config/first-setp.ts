@@ -29,13 +29,20 @@ const options = [
 const create = useCreate()
 
 export const sellerInformationConfig: ISchema = {
-  ...create.stepPane(SchemaTypesEnum.OBJECT, 'Seller Information'),
+  type: SchemaTypesEnum.OBJECT,
   properties: {
-    invitationCode: create.input({
-      title: title1,
-      description: description1,
-      componentProps: { maxlength: 10 },
-    }),
+    sellerInformation: {
+      type: SchemaTypesEnum.VOID,
+      'x-decorator': IntlCard,
+      properties: {
+        title: create.title('Seller Information', 'large'),
+        invitationCode: create.input({
+          title: title1,
+          description: description1,
+          componentProps: { maxlength: 10 },
+        }),
+      },
+    },
     legalEntityType: {
       type: SchemaTypesEnum.OBJECT,
       'x-decorator': IntlCard,
@@ -55,6 +62,7 @@ export const sellerInformationConfig: ISchema = {
     },
     companyInformation: {
       type: SchemaTypesEnum.OBJECT,
+      'x-decorator': IntlCard,
       properties: {
         subTitle: create.title('Company Information'),
         certificate: create.upload({

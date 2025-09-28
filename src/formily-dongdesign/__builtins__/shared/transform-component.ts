@@ -8,7 +8,7 @@ type ListenersTransformRules = Record<string, string>
 export const transformComponent = <T extends Record<string, any>>(
   tag: any,
   transformRules?: ListenersTransformRules,
-  defaultProps?: Partial<T>
+  defaultProps?: Partial<T>,
 ): Component<T> | any => {
   return defineComponent({
     setup(props, { attrs, slots }) {

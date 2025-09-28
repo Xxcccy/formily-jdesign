@@ -82,8 +82,8 @@ export const Space = defineComponent({
                         : `${size}px`,
                   },
           },
-          { default: () => [child] }
-        )
+          { default: () => [child] },
+        ),
       )
 
       return h('div', { class: someSpaceClass }, { default: () => renderItems })

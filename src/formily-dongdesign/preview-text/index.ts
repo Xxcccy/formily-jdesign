@@ -52,7 +52,7 @@ const Input = defineComponent({
               slots?.suffix?.(),
               slots?.append?.(),
             ].filter((child) => !!child),
-        }
+        },
       )
     }
   },
@@ -80,17 +80,17 @@ const Select = observer(
       const getLabels = () => {
         const selected = getSelected()
         const dataSource: any[] = field?.dataSource?.length
-        ? field.dataSource
-        : props?.options?.length
-        ? props.options
-        : []
+          ? field.dataSource
+          : props?.options?.length
+            ? props.options
+            : []
         if (!selected.length) {
           return h(
             JdTag,
             {},
             {
               default: () => placeholder.value,
-            }
+            },
           )
         }
         return selected.map(({ value, label }, key) => {
@@ -105,7 +105,7 @@ const Select = observer(
             },
             {
               default: () => text || placeholder.value,
-            }
+            },
           )
         })
       }
@@ -119,11 +119,11 @@ const Select = observer(
           },
           {
             default: () => getLabels(),
-          }
+          },
         )
       }
     },
-  })
+  }),
 )
 
 const Cascader = observer(
@@ -136,8 +136,8 @@ const Cascader = observer(
       const dataSource: any[] = field?.dataSource?.length
         ? field.dataSource
         : props?.options?.length
-        ? props.options
-        : []
+          ? props.options
+          : []
       const placeholder = usePlaceholder()
       const valueKey = props.props?.value || 'value'
       const labelKey = props.props?.label || 'label'
@@ -147,7 +147,7 @@ const Cascader = observer(
 
       const findLabel: (value: any, dataSource: any) => any = (
         value,
-        dataSource
+        dataSource,
       ) => {
         for (let i = 0; i < dataSource?.length; i++) {
           const item = dataSource[i]
@@ -168,7 +168,7 @@ const Cascader = observer(
             {},
             {
               default: () => placeholder.value,
-            }
+            },
           )
         }
         return selected.map((value, key) => {
@@ -182,7 +182,7 @@ const Cascader = observer(
             },
             {
               default: () => text || placeholder.value,
-            }
+            },
           )
         })
       }
@@ -196,11 +196,11 @@ const Cascader = observer(
           },
           {
             default: () => getLabels(),
-          }
+          },
         )
       }
     },
-  })
+  }),
 )
 
 const DatePicker = defineComponent<DatePickerProps>({
@@ -211,7 +211,7 @@ const DatePicker = defineComponent<DatePickerProps>({
     const getLabels = () => {
       if (isArr(props.value)) {
         const labels = (props.value as any[]).map(
-          (value: string | Date) => value || placeholder.value
+          (value: string | Date) => value || placeholder.value,
         )
 
         return labels.join('~')
@@ -229,7 +229,7 @@ const DatePicker = defineComponent<DatePickerProps>({
         },
         {
           default: () => getLabels(),
-        }
+        },
       )
     }
   },
@@ -244,7 +244,7 @@ const TimePicker = defineComponent<TimePickerProps>({
     const getLabels = () => {
       if (isArr(props.value)) {
         const labels = props.value.map(
-          (value: string | Date) => value || placeholder.value
+          (value: string | Date) => value || placeholder.value,
         )
 
         return labels.join('~')
@@ -262,7 +262,7 @@ const TimePicker = defineComponent<TimePickerProps>({
         },
         {
           default: () => getLabels(),
-        }
+        },
       )
     }
   },
@@ -282,7 +282,7 @@ const Text = defineComponent<any>({
         },
         {
           default: () => placeholder.value,
-        }
+        },
       )
     }
   },

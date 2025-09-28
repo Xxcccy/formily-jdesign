@@ -9,7 +9,7 @@ const TransformJdInputNumber = transformComponent<InputNumberProps>(
   JdInputNumber,
   {
     change: 'update:modelValue',
-  }
+  },
 )
 
 export const InputNumber = connect(
@@ -28,9 +28,9 @@ export const InputNumber = connect(
         controlsPosition,
         modelValue: props.modelValue,
       }
-    }
+    },
   ),
-  mapReadPretty(PreviewText.Input)
+  mapReadPretty(PreviewText.Input),
 )
 
 export default InputNumber

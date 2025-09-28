@@ -49,11 +49,11 @@ export const Submit = observer(
               }
             },
           },
-          slots
+          slots,
         )
       }
     },
-  })
+  }),
 )
 
 export default Submit

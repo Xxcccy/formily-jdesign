@@ -42,11 +42,11 @@ export const Reset = observer(
                 .catch(attrs.onResetValidateFailed as (e: any) => void)
             },
           },
-          slots
+          slots,
         )
       }
     },
-  })
+  }),
 )
 
 export default Reset

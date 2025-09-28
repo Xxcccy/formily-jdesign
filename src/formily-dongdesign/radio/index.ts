@@ -53,7 +53,7 @@ const RadioGroupOption = defineComponent({
                         default: () => [
                           resolveComponent(slots?.option ?? option, { option }),
                         ],
-                      }
+                      },
                     )
                   } else {
                     return h(
@@ -69,7 +69,7 @@ const RadioGroupOption = defineComponent({
                             option,
                           }),
                         ],
-                      }
+                      },
                     )
                   }
                 }),
@@ -80,7 +80,7 @@ const RadioGroupOption = defineComponent({
         {
           ...attrs,
         },
-        children
+        children,
       )
     }
   },
@@ -89,7 +89,7 @@ const RadioGroupOption = defineComponent({
 const RadioGroup = connect(
   RadioGroupOption,
   mapProps({ dataSource: 'options', value: 'modelValue' }),
-  mapReadPretty(PreviewText.Select)
+  mapReadPretty(PreviewText.Select),
 )
 export const Radio = composeExport(JdRadio, {
   Group: RadioGroup,

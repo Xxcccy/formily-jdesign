@@ -17,7 +17,8 @@ const slots = useSlots()
 
 const props: FormItemProps = {
   labelWrap: true,
-  labelAlign: 'right',
+  labelAlign: 'left',
+  colon: false,
 }
 
 defineExpose({} as ComponentInstance<typeof FormItem>)

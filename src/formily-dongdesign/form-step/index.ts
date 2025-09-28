@@ -2,7 +2,13 @@ import { defineComponent, PropType } from 'vue'
 import { action, model, observable } from '@formily/reactive'
 import { VoidField, Form } from '@formily/core'
 import { observer } from '@formily/reactive-vue'
-import { h, useField, useFieldSchema, RecursionField, Fragment } from '@formily/vue'
+import {
+  h,
+  useField,
+  useFieldSchema,
+  RecursionField,
+  Fragment,
+} from '@formily/vue'
 import { Schema, SchemaKey } from '@formily/json-schema'
 import { JdSteps, JdStep } from '@jd/jdesign-vue'
 import { stylePrefix, composeExport } from '../__builtins__'
@@ -58,7 +64,7 @@ const createFormStep = (defaultCurrent = 0): IFormStep => {
   const setDisplay = action.bound((target: number) => {
     const currentStep = env.steps[target]
     env.steps.forEach(({ name }) => {
-      env.form.query(`${env.field.address}.${name}`).take(field => {
+      env.form.query(`${env.field.address}.${name}`).take((field) => {
         if (name === currentStep.name) {
           field.setDisplay('visible')
         } else {
@@ -162,7 +168,7 @@ const FormStepInner = observer(
                     renderSteps(steps, ({ props }, key) => {
                       return h(JdStep, { props, key }, {})
                     }),
-                }
+                },
               ),
 
               renderSteps(steps, ({ name, schema }, key) => {
@@ -170,11 +176,11 @@ const FormStepInner = observer(
                 return h(RecursionField, { props: { name, schema }, key }, {})
               }),
             ],
-          }
+          },
         )
       }
     },
-  })
+  }),
 )
 
 const StepPane = defineComponent({

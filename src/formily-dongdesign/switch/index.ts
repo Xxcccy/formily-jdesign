@@ -13,7 +13,7 @@ export const Switch = connect(
   mapProps({
     value: 'modelValue',
     readOnly: 'readonly',
-  })
+  }),
 )
 
 export default Switch

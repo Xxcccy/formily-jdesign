@@ -1,4 +1,15 @@
-import { defineComponent, provide, InjectionKey, Ref, inject, toRefs, ref, onBeforeUnmount, PropType, h } from 'vue'
+import {
+  defineComponent,
+  provide,
+  InjectionKey,
+  Ref,
+  inject,
+  toRefs,
+  ref,
+  onBeforeUnmount,
+  PropType,
+  h,
+} from 'vue'
 import { FragmentComponent, useField, useFieldSchema } from '@formily/vue'
 import { isValid, uid, clone } from '@formily/shared'
 import { ArrayField } from '@formily/core'
@@ -49,7 +60,8 @@ export interface IArrayBaseContext {
   keyMap?: WeakMap<Record<string, unknown>, string> | string[] | null
 }
 
-const ArrayBaseSymbol: InjectionKey<IArrayBaseContext> = Symbol('ArrayBaseContext')
+const ArrayBaseSymbol: InjectionKey<IArrayBaseContext> =
+  Symbol('ArrayBaseContext')
 const ItemSymbol: InjectionKey<IArrayBaseItemProps> = Symbol('ItemContext')
 
 const useArray = () => {
@@ -62,7 +74,9 @@ const useIndex = (index?: number) => {
 }
 
 const useRecord = (record?: number) => {
-  const { record: recordRef } = toRefs(inject(ItemSymbol) as IArrayBaseItemProps)
+  const { record: recordRef } = toRefs(
+    inject(ItemSymbol) as IArrayBaseItemProps,
+  )
   return recordRef ?? ref(record)
 }
 
@@ -109,7 +123,8 @@ const useKey = (schema: Schema) => {
 
 const getDefaultValue = (defaultValue: any, schema: Schema): any => {
   if (isValid(defaultValue)) return clone(defaultValue)
-  if (Array.isArray(schema?.items)) return getDefaultValue(defaultValue, schema.items[0])
+  if (Array.isArray(schema?.items))
+    return getDefaultValue(defaultValue, schema.items[0])
   if (schema?.items?.type === 'array') return []
   if (schema?.items?.type === 'boolean') return true
   if (schema?.items?.type === 'date') return ''
@@ -128,7 +143,9 @@ const ArrayBaseInner = defineComponent({
       default: false,
     },
     keyMap: {
-      type: [WeakMap, Array] as PropType<WeakMap<Record<string, unknown>, string> | string[]>,
+      type: [WeakMap, Array] as PropType<
+        WeakMap<Record<string, unknown>, string> | string[]
+      >,
     },
   },
   setup(props, { slots, attrs }) {
@@ -180,7 +197,7 @@ const ArrayBaseSortHandle = defineComponent({
           ...attrs,
           class: [`${prefixCls}-sort-handle`].concat(attrs.class as any),
         },
-        {}
+        {},
       )
     }
   },
@@ -200,7 +217,7 @@ const ArrayBaseIndex = defineComponent({
         },
         {
           default: () => [`#${index.value + 1}.`],
-        }
+        },
       )
     }
   },
@@ -223,9 +240,12 @@ const ArrayBaseAddition = defineComponent({
           ...props,
           class: `${prefixCls}-addition`,
           icon: 'qax-icon-Alone-Plus',
-          onClick: e => {
+          onClick: (e) => {
             if (array.props?.disabled) return
-            const defaultValue = getDefaultValue(props.defaultValue, array?.schema.value)
+            const defaultValue = getDefaultValue(
+              props.defaultValue,
+              array?.schema.value,
+            )
             if (props.method === 'unshift') {
               array?.field?.value.unshift(defaultValue)
               array.attrs?.add?.(0)
@@ -240,13 +260,15 @@ const ArrayBaseAddition = defineComponent({
         },
         {
           default: () => [self.value.title || props.title],
-        }
+        },
       )
     }
   },
 })
 
-const ArrayBaseRemove = defineComponent<JdButtonProps & { title?: string; index?: number }>({
+const ArrayBaseRemove = defineComponent<
+  JdButtonProps & { title?: string; index?: number }
+>({
   name: 'ArrayBaseRemove',
   setup(props, { attrs }) {
     const indexRef = useIndex(props.index)
@@ -278,13 +300,15 @@ const ArrayBaseRemove = defineComponent<JdButtonProps & { title?: string; index?
         },
         {
           default: () => [props.title],
-        }
+        },
       )
     }
   },
 })
 
-const ArrayBaseMoveDown = defineComponent<JdButtonProps & { title?: string; index?: number }>({
+const ArrayBaseMoveDown = defineComponent<
+  JdButtonProps & { title?: string; index?: number }
+>({
   name: 'ArrayBaseMoveDown',
   setup(props, { attrs }) {
     const indexRef = useIndex(props.index)
@@ -303,7 +327,11 @@ const ArrayBaseMoveDown = defineComponent<JdButtonProps & { title?: string; inde
           onClick: (e: MouseEvent) => {
             e.stopPropagation()
             if (Array.isArray(base?.keyMap)) {
-              base.keyMap.splice(indexRef.value + 1, 0, base.keyMap.splice(indexRef.value, 1)[0])
+              base.keyMap.splice(
+                indexRef.value + 1,
+                0,
+                base.keyMap.splice(indexRef.value, 1)[0],
+              )
             }
 
             base?.field.value.moveDown(indexRef.value as number)
@@ -316,13 +344,15 @@ const ArrayBaseMoveDown = defineComponent<JdButtonProps & { title?: string; inde
         },
         {
           default: () => [props.title],
-        }
+        },
       )
     }
   },
 })
 
-const ArrayBaseMoveUp = defineComponent<JdButtonProps & { title?: string; index?: number }>({
+const ArrayBaseMoveUp = defineComponent<
+  JdButtonProps & { title?: string; index?: number }
+>({
   name: 'ArrayBaseMoveUp',
   setup(props, { attrs }) {
     const indexRef = useIndex(props.index)
@@ -341,7 +371,11 @@ const ArrayBaseMoveUp = defineComponent<JdButtonProps & { title?: string; index?
           onClick: (e: MouseEvent) => {
             e.stopPropagation()
             if (Array.isArray(base?.keyMap)) {
-              base.keyMap.splice(indexRef.value - 1, 0, base.keyMap.splice(indexRef.value, 1)[0])
+              base.keyMap.splice(
+                indexRef.value - 1,
+                0,
+                base.keyMap.splice(indexRef.value, 1)[0],
+              )
             }
 
             base?.field.value.moveUp(indexRef.value as number)
@@ -354,7 +388,7 @@ const ArrayBaseMoveUp = defineComponent<JdButtonProps & { title?: string; index?
         },
         {
           default: () => [props.title],
-        }
+        },
       )
     }
   },

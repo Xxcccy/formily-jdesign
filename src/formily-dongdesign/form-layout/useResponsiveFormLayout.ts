@@ -58,7 +58,7 @@ const calculateProps: ICalculateProps = (target, props) => {
   } = props
   const breakpointIndex = calcBreakpointIndex(
     breakpoints as number[],
-    clientWidth
+    clientWidth,
   )
 
   return {

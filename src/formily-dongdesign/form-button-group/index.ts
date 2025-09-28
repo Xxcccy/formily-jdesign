@@ -45,7 +45,7 @@ export const FormButtonGroup = defineComponent({
           },
           {
             default: () => h(Space, { size: props.gutter }, slots),
-          }
+          },
         )
       } else {
         return h(
@@ -58,13 +58,13 @@ export const FormButtonGroup = defineComponent({
                 props.align === 'left'
                   ? 'flex-start'
                   : props.align === 'right'
-                  ? 'flex-end'
-                  : 'center',
+                    ? 'flex-end'
+                    : 'center',
               display: 'flex',
             },
             size: props.gutter,
           },
-          slots
+          slots,
         )
       }
     }

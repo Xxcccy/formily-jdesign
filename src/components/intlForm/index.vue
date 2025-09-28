@@ -1,56 +1,30 @@
 <template>
-  <div style="display: flex; flex-direction: column; height: 100%">
-    <div style="padding: 0 20%">
-      <FormProvider :form="form">
-        <SchemaField :schema="schema" />
-      </FormProvider>
-    </div>
-    <div
-      style="
-        display: flex;
-        justify-content: center;
-        margin-top: auto;
-        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
-        padding: 16px 0;
-        background: white;
-        border-top: 1px solid #f0f0f0;
-      "
-    >
-      <FormConsumer>
-        <template #default>
-          <JdButton :disabled="!formStep.allowBack" @click="back">
-            上一步
-          </JdButton>
-          <JdButton
-            :disabled="!formStep.allowNext"
-            type="primary"
-            @click="next"
-          >
-            下一步
-          </JdButton>
-          <JdButton @click="submit" type="primary">提交</JdButton>
-        </template>
-      </FormConsumer>
-    </div>
-  </div>
+  <FormProvider :form="form">
+    <SchemaField :schema="schema" />
+  </FormProvider>
 </template>
 
 <script setup lang="ts">
-import { createForm } from '@formily/core'
-import { FormConsumer, FormProvider, ISchema } from '@formily/vue'
-import { JdButton } from '@jd/jdesign-vue'
+import { FormProvider, ISchema } from '@formily/vue'
+import { provide, ref, watch } from 'vue'
 import {
   businessInformationConfig,
   sellerInformationConfig,
   sellerReviewConfig,
 } from '../../config'
+import { ConfigEnum } from '../../constants'
 import { useCreate, useSchemaFiled } from '../../hooks'
 
 defineOptions({
   name: 'Form',
 })
 
-const form = createForm()
+const props = defineProps<{
+  config: string | number
+  form: any
+}>()
+
+// 直接使用 props.form，不需要解构
 // 初始化 form 数据
 // form.values = {
 //   sellerInformation: {
@@ -58,35 +32,43 @@ const form = createForm()
 //   },
 // }
 const create = useCreate()
-const step = create.formStep('void')
-const formStep = step.formStepInstance
 
-const schema: ISchema = {
-  type: 'object',
+const schema = ref<ISchema>({
   properties: {
-    step: {
-      ...step.schema,
+    layout: {
+      ...create.formLayout({ componentProps: { layout: 'vertical' } }),
       properties: {
         sellerInformation: sellerInformationConfig,
-        businessInformation: businessInformationConfig,
-        sellerReview: sellerReviewConfig,
       },
     },
   },
+})
+
+const freshConfig = (config: object) => {
+  schema.value.properties['layout'].properties = config
 }
+
+watch(
+  () => props.config,
+  (n) => {
+    if (n === ConfigEnum.SELLER_INFORMATION) {
+      freshConfig({
+        sellerInformation: sellerInformationConfig,
+      })
+    } else if (n === ConfigEnum.BUSINESS_INFORMATION) {
+      freshConfig({
+        businessInformation: businessInformationConfig,
+      })
+    } else {
+      freshConfig({
+        sellerReview: sellerReviewConfig,
+      })
+    }
+  },
+  { immediate: true },
+)
 
 const SchemaField = useSchemaFiled()
 
-const back = () => {
-  formStep.back()
-}
-
-const next = () => {
-  formStep.next()
-}
-
-const submit = () => {
-  form.validate()
-  console.log(JSON.parse(JSON.stringify(form.values)))
-}
+provide('form', props.form)
 </script>

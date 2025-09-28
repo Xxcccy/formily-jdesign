@@ -65,7 +65,7 @@ const EditableInner = observer(
         },
         {
           fireImmediately: true,
-        }
+        },
       )
 
       onBeforeUnmount(dispose)
@@ -114,10 +114,10 @@ const EditableInner = observer(
                   {
                     class: [`${prefixCls}-edit-btn`],
                   },
-                  {}
+                  {},
                 )
               },
-            }
+            },
           )
         }
 
@@ -135,10 +135,10 @@ const EditableInner = observer(
                   {
                     class: [`${prefixCls}-close-btn`],
                   },
-                  {}
+                  {},
                 )
               },
-            }
+            },
           )
         }
 
@@ -161,16 +161,16 @@ const EditableInner = observer(
                   ...attrs,
                   ...itemProps,
                 },
-                slots
+                slots,
               ),
               renderEditHelper(),
               renderCloseHelper(),
-            ]
-          )
+            ],
+          ),
         )
       }
     },
-  })
+  }),
 )
 
 const EditablePopover = observer(
@@ -219,25 +219,25 @@ const EditablePopover = observer(
                             {
                               class: [`${prefixCls}-preview`],
                             },
-                            attrs.title || field.title
+                            attrs.title || field.title,
                           ),
                           h(
                             pattern === 'editable' ? Edit : Edit,
                             {
                               class: [`${prefixCls}-edit-btn`],
                             },
-                            {}
+                            {},
                           ),
-                        ]
+                        ],
                       ),
-                  }
-                )
+                  },
+                ),
               ),
-          }
+          },
         )
       }
     },
-  })
+  }),
 )
 
 export const Editable = composeExport(EditableInner, {

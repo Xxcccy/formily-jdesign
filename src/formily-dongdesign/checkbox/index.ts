@@ -50,7 +50,7 @@ const CheckboxOption = defineComponent({
           {
             ...newProps,
           },
-          children
+          children,
         )
       }
 
@@ -59,7 +59,7 @@ const CheckboxOption = defineComponent({
         {
           ...props,
         },
-        slots
+        slots,
       )
     }
   },
@@ -107,7 +107,7 @@ const CheckboxGroupOption: Component = defineComponent({
                       },
                       slots?.option
                         ? { default: () => slots.option({ option }) }
-                        : {}
+                        : {},
                     )
                   } else {
                     return h(
@@ -118,7 +118,7 @@ const CheckboxGroupOption: Component = defineComponent({
                       },
                       slots?.option
                         ? { default: () => slots.option({ option }) }
-                        : {}
+                        : {},
                     )
                   }
                 }),
@@ -129,7 +129,7 @@ const CheckboxGroupOption: Component = defineComponent({
         {
           ...attrs,
         },
-        children
+        children,
       )
     }
   },
@@ -140,12 +140,15 @@ const CheckboxGroup = connect(
   mapProps({ dataSource: 'options', value: 'modelValue' }),
   mapReadPretty(PreviewText.Select, {
     multiple: true,
-  })
+  }),
 )
 
-const InnerCheckbox = connect(CheckboxOption, mapProps({
-  value: 'modelValue',
-}))
+const InnerCheckbox = connect(
+  CheckboxOption,
+  mapProps({
+    value: 'modelValue',
+  }),
+)
 
 export const Checkbox = composeExport(InnerCheckbox, {
   Group: CheckboxGroup,

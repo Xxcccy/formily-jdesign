@@ -61,10 +61,10 @@ export const ArrayTabs = observer(
                     },
                     {
                       default: () => [tab],
-                    }
+                    },
                   ),
                 ],
-              }
+              },
             )
           }
           return h(
@@ -72,13 +72,15 @@ export const ArrayTabs = observer(
             {},
             {
               default: () => [tab],
-            }
+            },
           )
         }
 
         const renderItems = () =>
           dataSource?.map((item, index) => {
-            const items = Array.isArray(schema.items) ? schema.items[index] : schema.items
+            const items = Array.isArray(schema.items)
+              ? schema.items[index]
+              : schema.items
             const key = `tab-${index}`
 
             return h(
@@ -96,11 +98,11 @@ export const ArrayTabs = observer(
                       schema: items,
                       name: index,
                     },
-                    {}
+                    {},
                   ),
 
                 label: () => [badgedTab(index)],
-              }
+              },
             )
           })
         return h(
@@ -126,11 +128,11 @@ export const ArrayTabs = observer(
           },
           {
             default: () => [renderItems()],
-          }
+          },
         )
       }
     },
-  })
+  }),
 )
 
 export default ArrayTabs
