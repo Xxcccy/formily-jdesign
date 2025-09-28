@@ -35,9 +35,12 @@ export const sellerInformationConfig: ISchema = {
       type: 'object',
       properties: {
         subTitle: create.title('Legal Entity Type'),
-        region: create.select('string', title2, options, description2, {
-          labelWrap: true,
-          labelAlign: 'right',
+        region: create.select({
+          type: 'string',
+          title: title2,
+          options,
+          description: description2,
+          decoratorProps: { labelWrap: true, labelAlign: 'right' },
         }),
       },
     },
@@ -45,16 +48,12 @@ export const sellerInformationConfig: ISchema = {
       type: 'object',
       properties: {
         subTitle: create.title('Company Information'),
-        certificate: {
-          type: 'array',
+        certificate: create.upload({
           title: 'Certifivate of Business',
-          'x-decorator': 'IntlFormItem',
-          'x-component': 'IntlUpload',
-          'x-component-props': {
-            listType: 'picture-card',
+          componentProps: {
             action: 'https://feqd-ftf.jd.com/api/jdesign/upload',
           },
-        },
+        }),
       },
     },
   },

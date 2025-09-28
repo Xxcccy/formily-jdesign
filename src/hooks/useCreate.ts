@@ -1,6 +1,22 @@
-import { ISchema, SchemaTypes } from '@formily/vue'
+import { ISchema, SchemaEnum, SchemaReaction, SchemaTypes } from '@formily/vue'
 import { FormItemProps, FormStep, IFormStep } from '../formily-dongdesign'
 import { components } from '../utils'
+import { Field } from '@formily/core'
+
+interface CommonConfig {
+  type?: SchemaTypes
+  title?: string
+  description?: string
+  decoratorProps?: FormItemProps
+  componentProps?: ISchema['x-component-props']
+  validator?: (v: unknown) => any
+  triggerType?: 'onInput' | 'onFocus' | 'onBlur'
+  reactions?: (field: Field) => void
+}
+
+interface SelectConfig extends CommonConfig {
+  options: SchemaEnum<any>
+}
 
 interface Step {
   formStepInstance: IFormStep
@@ -20,13 +36,13 @@ export function useCreate() {
 
   const input = ({
     title,
-    description = '',
-    decoratorProps = {},
-    componentProps = {},
+    description,
+    decoratorProps,
+    componentProps,
     validator = () => {},
-    triggerType = '',
-    reactions = (field: any) => field,
-  }): ISchema => {
+    triggerType,
+    reactions,
+  }: CommonConfig): ISchema => {
     return {
       type: 'string',
       title,
@@ -43,14 +59,14 @@ export function useCreate() {
     }
   }
 
-  const select = (
-    type: SchemaTypes,
-    title: string,
-    options: Array<any>,
-    description?: string,
-    decoratorProps?: FormItemProps,
-    componentProps?: any,
-  ): ISchema => {
+  const select = ({
+    type,
+    title,
+    options,
+    description,
+    decoratorProps,
+    componentProps,
+  }: SelectConfig): ISchema => {
     return {
       type,
       title,
@@ -102,6 +118,23 @@ export function useCreate() {
     }
   }
 
+  const upload = ({
+    type = 'array',
+    title,
+    componentProps,
+  }: CommonConfig): ISchema => {
+    return {
+      type,
+      title,
+      'x-decorator': 'IntlFormItem',
+      'x-component': 'IntlUpload',
+      'x-component-props': {
+        listType: 'picture-card',
+        ...componentProps,
+      },
+    }
+  }
+
   return {
     components,
     scope,
@@ -111,5 +144,6 @@ export function useCreate() {
     stepPane,
     formStep,
     selectModel,
+    upload,
   }
 }
