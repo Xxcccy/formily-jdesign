@@ -29,13 +29,13 @@ const options = [
 const create = useCreate()
 
 export const sellerInformationConfig: ISchema = {
-  type: SchemaTypesEnum.OBJECT,
+  type: SchemaTypesEnum.VOID,
   properties: {
     sellerInformation: {
       type: SchemaTypesEnum.VOID,
       'x-decorator': IntlCard,
       properties: {
-        title: create.title('Seller Information', 'large'),
+        title: create.title('Invitation Code'),
         invitationCode: create.input({
           title: title1,
           description: description1,

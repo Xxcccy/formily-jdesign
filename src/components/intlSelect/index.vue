@@ -1,52 +1,35 @@
 <template>
-  <div>
-    <JdSelect v-model="modelValue">
-      <template #custom>
-        <div style="display: flex; align-items: center; margin-left: 8px">
+  <JdSelect v-model="modelValue" class="select">
+    <template #custom>
+      <div style="display: flex; align-items: center; margin-left: 8px">
+        <img
+          style="width: 20px; height: 20px; border-radius: 50%"
+          :src="selectedIcon"
+        />
+        <div class="select__custom">
+          {{ selectedLabel }}
+        </div>
+      </div>
+    </template>
+    <jd-option
+      v-for="option in datasource"
+      :key="option.value"
+      :label="option.label"
+      :value="option.value"
+    >
+      <div>
+        <div class="select__option">
           <img
             style="width: 20px; height: 20px; border-radius: 50%"
-            :src="selectedIcon"
+            :src="option.icon"
           />
-          <div
-            style="
-              font-size: 14px;
-              font-weight: 400;
-              margin-left: 8px;
-              line-height: 22px;
-              font-family: PingFang SC;
-            "
-          >
-            {{ selectedLabel }}
+          <div class="select__option-label">
+            {{ option.label }}
           </div>
         </div>
-      </template>
-      <jd-option
-        v-for="option in datasource"
-        :key="option.value"
-        :label="option.label"
-        :value="option.value"
-      >
-        <div>
-          <div style="display: flex; align-items: center">
-            <img
-              style="width: 20px; height: 20px; border-radius: 50%"
-              :src="option.icon"
-            />
-            <div
-              style="
-                font-size: 14px;
-                font-weight: 400;
-                margin-left: 8px;
-                font-family: PingFang SC;
-              "
-            >
-              {{ option.label }}
-            </div>
-          </div>
-        </div>
-      </jd-option>
-    </JdSelect>
-  </div>
+      </div>
+    </jd-option>
+  </JdSelect>
 </template>
 
 <script setup lang="ts">
@@ -84,4 +67,6 @@ const selectedLabel = computed(() => {
 defineExpose({} as ComponentInstance<typeof Select>)
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+@import './index.scss';
+</style>

@@ -1,0 +1,61 @@
+.upload {
+  &__avatar {
+    width: 120px;
+    height: 120px;
+    display: block;
+  }
+
+  .jd-upload {
+    border: var(--jd-border-width-1) dashed var(--jd-color-line-200);
+    border-radius: var(--jd-radius-m);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: 0.2s;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      border-color: var(--jd-color-brand-normal);
+      color: var(--jd-color-brand-normal);
+
+      .jd-icon.upload__icon,
+      .upload__text {
+        color: var(--jd-color-brand-normal);
+      }
+    }
+
+    &.is-disabled {
+      background: var(--jd-color-fill-100);
+      border: 1px solid var(--jd-color-line-200);
+      cursor: not-allowed;
+
+      .jd-icon.upload__icon,
+      .upload__text {
+        color: var(--jd-color-text-100);
+
+        &:hover {
+          color: var(--jd-color-text-100);
+        }
+      }
+    }
+  }
+
+  &__content {
+    text-align: center;
+    color: var(--jd-color-text-200);
+  }
+
+  &__icon {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  &__text {
+    font-size: var(--jd-font-size-14);
+    line-height: var(--jd-line-height-14);
+  }
+}

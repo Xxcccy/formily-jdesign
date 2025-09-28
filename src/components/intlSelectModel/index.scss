@@ -1,0 +1,22 @@
+.select-model {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 50px;
+
+  &__item {
+    width: 150px;
+    height: 80px;
+    border: 2px solid gray;
+    border-radius: 4px;
+    text-align: center;
+    align-content: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--active {
+      border: 2px solid blue;
+    }
+  }
+}

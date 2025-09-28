@@ -1,0 +1,23 @@
+.select {
+  width: 240px;
+
+  &__custom {
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 8px;
+    line-height: 22px;
+    font-family: PingFang SC;
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+  }
+
+  &__option-label {
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 8px;
+    font-family: PingFang SC;
+  }
+}

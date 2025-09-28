@@ -1,13 +1,5 @@
 <template>
-  <div
-    style="
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    "
-  >
+  <div class="step">
     <JdCard>
       <JdSteps
         :active="active"
@@ -24,17 +16,7 @@
 
     <slot :active="active"></slot>
 
-    <div
-      style="
-        display: flex;
-        justify-content: center;
-        margin-top: auto;
-        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
-        padding: 16px 0;
-        background: white;
-        border-top: 1px solid #f0f0f0;
-      "
-    >
+    <div class="step__actions">
       <JdButton v-show="active === 1" @click="() => active--">
         Previous
       </JdButton>
@@ -75,4 +57,6 @@ const submit = () => {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+@import './index.scss';
+</style>

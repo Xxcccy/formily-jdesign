@@ -1,5 +1,5 @@
 <template>
-  <div style="padding: 0 50px">
+  <div class="form-item">
     <component :is="h(FormItem, { ...attrs, ...props }, slots)" />
   </div>
 </template>
@@ -23,3 +23,7 @@ const props: FormItemProps = {
 
 defineExpose({} as ComponentInstance<typeof FormItem>)
 </script>
+
+<style scoped lang="scss">
+@import './index.scss';
+</style>

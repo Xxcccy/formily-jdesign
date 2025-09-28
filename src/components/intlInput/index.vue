@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <JdInput v-bind="attrs" style="width: 240px" show-word-limit />
+  <div class="input">
+    <JdInput v-bind="attrs" show-word-limit />
   </div>
 </template>
 
@@ -16,3 +16,7 @@ const attrs = useAttrs()
 
 defineExpose({} as ComponentInstance<typeof JdInput>)
 </script>
+
+<style scoped lang="scss">
+@import './index.scss';
+</style>
