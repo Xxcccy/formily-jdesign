@@ -1,4 +1,6 @@
-import type { ISchema } from '@formily/vue'
+import { type ISchema } from '@formily/vue'
+import IntlCard from '../components/intlCard'
+import { SchemaTypesEnum } from '../constants'
 import { useCreate } from '../hooks'
 
 const title1 = 'Invitation Code'
@@ -10,21 +12,24 @@ const options = [
   {
     label: 'China Mainland',
     value: 1,
+    icon: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
   },
   {
     label: 'Hong Kong, China',
     value: 2,
+    icon: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
   },
   {
     label: 'United Kingdom',
     value: 3,
+    icon: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
   },
 ]
 
 const create = useCreate()
 
 export const sellerInformationConfig: ISchema = {
-  ...create.stepPane('object', 'Seller Information'),
+  ...create.stepPane(SchemaTypesEnum.OBJECT, 'Seller Information'),
   properties: {
     invitationCode: create.input({
       title: title1,
@@ -32,7 +37,8 @@ export const sellerInformationConfig: ISchema = {
       componentProps: { maxlength: 10 },
     }),
     legalEntityType: {
-      type: 'object',
+      type: SchemaTypesEnum.OBJECT,
+      'x-decorator': IntlCard,
       properties: {
         subTitle: create.title('Legal Entity Type'),
         region: create.select({
@@ -41,11 +47,14 @@ export const sellerInformationConfig: ISchema = {
           options,
           description: description2,
           decoratorProps: { labelWrap: true, labelAlign: 'right' },
+          componentProps: {
+            datasource: options,
+          },
         }),
       },
     },
     companyInformation: {
-      type: 'object',
+      type: SchemaTypesEnum.OBJECT,
       properties: {
         subTitle: create.title('Company Information'),
         certificate: create.upload({

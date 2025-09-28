@@ -75,7 +75,7 @@ const schema: ISchema = {
   },
 }
 
-const SchemaField = useSchemaFiled(create.components, create.scope)
+const SchemaField = useSchemaFiled()
 
 const back = () => {
   formStep.back()

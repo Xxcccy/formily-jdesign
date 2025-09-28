@@ -1,7 +1,15 @@
-import { ISchema, SchemaEnum, SchemaReaction, SchemaTypes } from '@formily/vue'
+import { Field } from '@formily/core'
+import { ISchema, SchemaEnum, SchemaTypes } from '@formily/vue'
+import { SchemaTypesEnum } from '../constants'
 import { FormItemProps, FormStep, IFormStep } from '../formily-dongdesign'
 import { components } from '../utils'
-import { Field } from '@formily/core'
+import IntlTitle from '../components/intlTitle'
+import IntlFormItem from '../components/intlFormItem'
+import IntlInput from '../components/intlInput'
+import IntlSelect from '../components/intlSelect'
+import IntlSelectModel from '../components/intlSelectModel'
+import IntlUpload from '../components/intlUpload'
+import IntlCard from '../components/intlCard'
 
 interface CommonConfig {
   type?: SchemaTypes
@@ -12,10 +20,12 @@ interface CommonConfig {
   validator?: (v: unknown) => any
   triggerType?: 'onInput' | 'onFocus' | 'onBlur'
   reactions?: (field: Field) => void
+  contentSlots?: any
 }
 
 interface SelectConfig extends CommonConfig {
-  options: SchemaEnum<any>
+  options?: SchemaEnum<any>
+  datasource?: Array<{ label: string; value: any; [key: string]: any }>
 }
 
 interface Step {
@@ -28,8 +38,8 @@ export function useCreate() {
 
   const title = (content: string): ISchema => {
     return {
-      type: 'void',
-      'x-component': 'IntlTitle',
+      type: SchemaTypesEnum.VOID,
+      'x-component': IntlTitle,
       'x-content': content,
     }
   }
@@ -44,11 +54,11 @@ export function useCreate() {
     reactions,
   }: CommonConfig): ISchema => {
     return {
-      type: 'string',
+      type: SchemaTypesEnum.STRING,
       title,
       description,
-      'x-decorator': 'IntlFormItem',
-      'x-component': 'IntlInput',
+      'x-decorator': IntlFormItem,
+      'x-component': IntlInput,
       'x-decorator-props': decoratorProps,
       'x-component-props': componentProps,
       'x-validator': {
@@ -71,8 +81,8 @@ export function useCreate() {
       type,
       title,
       description,
-      'x-decorator': 'IntlFormItem',
-      'x-component': 'IntlSelect',
+      'x-decorator': IntlFormItem,
+      'x-component': IntlSelect,
       'x-decorator-props': decoratorProps,
       'x-component-props': componentProps,
       enum: options,
@@ -93,9 +103,9 @@ export function useCreate() {
     const formStepInstance = FormStep.createFormStep()
     scope['formStepInstance'] = formStepInstance
 
-    const schema = {
-      type: type,
-      'x-component': 'FormStep',
+    const schema: ISchema = {
+      type,
+      'x-component': FormStep,
       'x-component-props': {
         formStep: formStepInstance,
         'finish-status': 'success',
@@ -113,21 +123,21 @@ export function useCreate() {
     return {
       type,
       title: '',
-      'x-decorator': 'IntlFormItem',
-      'x-component': 'IntlSelectModel',
+      'x-decorator': IntlFormItem,
+      'x-component': IntlSelectModel,
     }
   }
 
   const upload = ({
-    type = 'array',
+    type = SchemaTypesEnum.ARRAY,
     title,
     componentProps,
   }: CommonConfig): ISchema => {
     return {
       type,
       title,
-      'x-decorator': 'IntlFormItem',
-      'x-component': 'IntlUpload',
+      'x-decorator': IntlFormItem,
+      'x-component': IntlUpload,
       'x-component-props': {
         listType: 'picture-card',
         ...componentProps,

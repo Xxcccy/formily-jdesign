@@ -1,6 +1,7 @@
 import type { Field } from '@formily/core'
 import type { ISchema } from '@formily/vue'
 import { useCreate } from '../hooks'
+import { SchemaTypesEnum } from '../constants'
 
 const reactions = (field: Field) => {
   field.visible =
@@ -17,7 +18,7 @@ export const businessInformationConfig: ISchema = {
     title: 'Business Information',
   },
   properties: {
-    optionsModel: create.selectModel('object'),
+    optionsModel: create.selectModel(SchemaTypesEnum.OBJECT),
     ttt: create.input({ title: 'TTT', reactions }),
   },
 }
