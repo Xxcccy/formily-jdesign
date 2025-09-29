@@ -1,5 +1,11 @@
 <template>
-  <div class="title" :class="{ 'title--large': size === 'large', 'title--normal': size === 'normal' }">
+  <div
+    class="title"
+    :class="{
+      'title--large': size === 'large',
+      'title--normal': size === 'normal',
+    }"
+  >
     <slot></slot>
   </div>
 </template>

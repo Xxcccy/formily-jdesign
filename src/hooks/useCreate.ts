@@ -27,7 +27,7 @@ interface SelectConfig extends CommonConfig {
 }
 
 export function useCreate() {
-  const title = (content: string, size: string = 'default'): ISchema => {
+  const title = (content: string, size: string = 'normal'): ISchema => {
     return {
       type: SchemaTypesEnum.VOID,
       'x-component': IntlTitle,

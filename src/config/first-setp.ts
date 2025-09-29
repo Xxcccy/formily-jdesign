@@ -35,7 +35,8 @@ export const sellerInformationConfig: ISchema = {
       type: SchemaTypesEnum.VOID,
       'x-decorator': IntlCard,
       properties: {
-        title: create.title('Invitation Code'),
+        title_1: create.title('Invitation Code', 'large'),
+        title_2: create.title('Invitation Code'),
         invitationCode: create.input({
           title: title1,
           description: description1,
