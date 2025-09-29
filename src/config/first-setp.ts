@@ -5,6 +5,10 @@ import { useCreate } from '../hooks'
 
 const title1 = 'Invitation Code'
 const description1 = `Joybuy is currently an invitation-only platform. If you're interested in joining, please send an email to`
+const checkInvitationCode = (value: any) => {
+  if (!value) return 'input something'
+  return true
+}
 
 const title2 = 'Country / Region of Registration'
 const description2 = `Joybuy only accepts standard corporate legal entities. Individual merchants and sole proprietorships are currently not eligible to register as sellers.`
@@ -41,6 +45,8 @@ export const sellerInformationConfig: ISchema['properties'] = {
           invitationCode: create.input({
             title: title1,
             description: description1,
+            triggerType: 'onBlur',
+            validator: checkInvitationCode,
             componentProps: { maxlength: 10 },
           }),
           subTitle: create.title('Legal Entity Type'),
@@ -66,7 +72,7 @@ export const sellerInformationConfig: ISchema['properties'] = {
               action: 'https://feqd-ftf.jd.com/api/jdesign/upload',
             },
           }),
-          owner: create.owner({}),
+          owner: create.owner(),
         },
       },
     },

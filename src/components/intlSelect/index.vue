@@ -29,7 +29,6 @@
 <script setup lang="ts">
 import { JdOption, JdSelect } from '@jd/jdesign-vue'
 import { ComponentInstance, computed } from 'vue'
-import { Select } from '../../formily-dongdesign'
 
 defineOptions({
   name: 'Select',

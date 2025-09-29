@@ -47,7 +47,7 @@ export function useCreate() {
     validator = () => {},
     triggerType,
     reactions,
-  }: CommonConfig): ISchema => {
+  }: CommonConfig = {}): ISchema => {
     return {
       type: SchemaTypesEnum.STRING,
       title,
@@ -71,7 +71,7 @@ export function useCreate() {
     description,
     decoratorProps,
     componentProps,
-  }: SelectConfig): ISchema => {
+  }: SelectConfig = {}): ISchema => {
     return {
       type,
       title,
@@ -97,7 +97,7 @@ export function useCreate() {
     type = SchemaTypesEnum.ARRAY,
     title,
     componentProps,
-  }: CommonConfig): ISchema => {
+  }: CommonConfig = {}): ISchema => {
     return {
       type,
       title,
@@ -113,7 +113,7 @@ export function useCreate() {
   const formLayout = ({
     type = SchemaTypesEnum.VOID,
     componentProps,
-  }: CommonConfig): ISchema => {
+  }: CommonConfig = {}): ISchema => {
     return {
       type,
       'x-component': FormLayout,
@@ -124,11 +124,11 @@ export function useCreate() {
   const owner = ({
     type = SchemaTypesEnum.ARRAY,
     componentProps = {},
-  }): ISchema => {
+  }: CommonConfig = {}): ISchema => {
     return {
       type,
       'x-component': IntlOwner,
-      "x-decorator": IntlFormItem,
+      'x-decorator': IntlFormItem,
       'x-component-props': componentProps,
     }
   }
