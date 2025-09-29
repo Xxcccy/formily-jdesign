@@ -1,7 +1,14 @@
 .select {
   width: 240px;
 
+  &__custom-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+  }
+
   &__custom {
+    cursor: pointer;
     font-size: 14px;
     font-weight: 400;
     margin-left: 8px;
@@ -9,9 +16,21 @@
     font-family: PingFang SC;
   }
 
+  &__custom-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+
   &__option {
     display: flex;
     align-items: center;
+  }
+
+  &__option-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
   }
 
   &__option-label {

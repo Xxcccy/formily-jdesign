@@ -36,7 +36,7 @@ export const sellerInformationConfig: ISchema['properties'] = {
         type: SchemaTypesEnum.VOID,
         'x-decorator': IntlCard,
         properties: {
-          title_1: create.title('Invitation Code', 'large'),
+          title_1: create.title('Seller Information', 'large'),
           title_2: create.title('Invitation Code'),
           invitationCode: create.input({
             title: title1,
@@ -49,7 +49,6 @@ export const sellerInformationConfig: ISchema['properties'] = {
             title: title2,
             options,
             description: description2,
-            decoratorProps: { labelWrap: true, labelAlign: 'right' },
             componentProps: {
               datasource: options,
             },
@@ -67,6 +66,7 @@ export const sellerInformationConfig: ISchema['properties'] = {
               action: 'https://feqd-ftf.jd.com/api/jdesign/upload',
             },
           }),
+          owner: create.owner({}),
         },
       },
     },

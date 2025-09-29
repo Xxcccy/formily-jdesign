@@ -1,6 +1,6 @@
 <template>
   <div class="input">
-    <JdInput v-bind="attrs" show-word-limit />
+    <JdInput v-model="modelValue" v-bind="attrs" show-word-limit />
   </div>
 </template>
 
@@ -13,6 +13,7 @@ defineOptions({
 })
 
 const attrs = useAttrs()
+const modelValue = defineModel<string>()
 
 defineExpose({} as ComponentInstance<typeof JdInput>)
 </script>

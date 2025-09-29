@@ -8,6 +8,7 @@ import IntlTitle from '../components/intlTitle'
 import IntlUpload from '../components/intlUpload'
 import { SchemaTypesEnum } from '../constants'
 import { FormItemProps, FormLayout } from '../formily-dongdesign'
+import IntlOwner from '../components/intlUltimateBeneficialOwner'
 
 interface CommonConfig {
   type?: SchemaTypes
@@ -120,6 +121,18 @@ export function useCreate() {
     }
   }
 
+  const owner = ({
+    type = SchemaTypesEnum.ARRAY,
+    componentProps = {},
+  }): ISchema => {
+    return {
+      type,
+      'x-component': IntlOwner,
+      "x-decorator": IntlFormItem,
+      'x-component-props': componentProps,
+    }
+  }
+
   return {
     input,
     title,
@@ -127,5 +140,6 @@ export function useCreate() {
     selectModel,
     upload,
     formLayout,
+    owner,
   }
 }

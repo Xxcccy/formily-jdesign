@@ -1,5 +1,5 @@
 <template>
-  <Upload
+  <JdUpload
     class="upload"
     v-bind="attrs"
     :on-success="handleSuccess"
@@ -7,19 +7,24 @@
   >
     <img v-if="imageUrl" :src="imageUrl" class="upload__avatar" />
     <div v-else class="upload__content">
-      <jd-icon class="upload__icon">
+      <JdIcon class="upload__icon">
         <Plus />
-      </jd-icon>
+      </JdIcon>
       <div class="upload__text">upload</div>
     </div>
-  </Upload>
+  </JdUpload>
 </template>
 
 <script setup lang="ts">
-import { JdIcon, UploadFile, UploadFiles, UploadProps } from '@jd/jdesign-vue'
-import { Upload } from '../../formily-dongdesign'
-import { ref, useAttrs } from 'vue'
 import { Plus } from '@jd/jdesign-icons-vue'
+import {
+  JdIcon,
+  JdUpload,
+  UploadFile,
+  UploadFiles,
+  UploadProps,
+} from '@jd/jdesign-vue'
+import { ComponentInstance, ref, useAttrs } from 'vue'
 
 defineOptions({
   name: 'Upload',
@@ -45,6 +50,8 @@ const handlePictureCardPreview: UploadProps['onPreview'] = (
 ) => {
   console.log(uploadFile)
 }
+
+defineExpose({} as ComponentInstance<typeof JdUpload>)
 </script>
 
 <style scoped lang="scss">

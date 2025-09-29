@@ -1,11 +1,8 @@
 <template>
   <JdSelect v-model="modelValue" class="select">
     <template #custom>
-      <div style="display: flex; align-items: center; margin-left: 8px">
-        <img
-          style="width: 20px; height: 20px; border-radius: 50%"
-          :src="selectedIcon"
-        />
+      <div class="select__custom-wrapper">
+        <img class="select__custom-icon" :src="selectedIcon" />
         <div class="select__custom">
           {{ selectedLabel }}
         </div>
@@ -19,10 +16,7 @@
     >
       <div>
         <div class="select__option">
-          <img
-            style="width: 20px; height: 20px; border-radius: 50%"
-            :src="option.icon"
-          />
+          <img class="select__option-icon" :src="option.icon" />
           <div class="select__option-label">
             {{ option.label }}
           </div>
@@ -54,7 +48,7 @@ const props = withDefaults(defineProps<Props>(), {
   datasource: () => [],
 })
 
-const modelValue = defineModel()
+const modelValue = defineModel<any>()
 
 const selectedIcon = computed(() => {
   return props.datasource.find((item) => item.value === modelValue.value)?.icon
@@ -64,7 +58,7 @@ const selectedLabel = computed(() => {
   return props.datasource.find((item) => item.value === modelValue.value)?.label
 })
 
-defineExpose({} as ComponentInstance<typeof Select>)
+defineExpose({} as ComponentInstance<typeof JdSelect>)
 </script>
 
 <style scoped lang="scss">
