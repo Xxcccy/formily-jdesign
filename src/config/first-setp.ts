@@ -44,20 +44,10 @@ export const sellerInformationConfig: ISchema['properties'] = {
           title_2: create.title('Invitation Code'),
           invitationCode: create.input({
             title: title1,
-            description: description1,
+            // description: description1,
             triggerType: 'onBlur',
             validator: checkInvitationCode,
             componentProps: { maxlength: 10 },
-          }),
-          subTitle: create.title('Legal Entity Type'),
-          legalEntityType: create.select({
-            type: 'string',
-            title: title2,
-            options,
-            description: description2,
-            componentProps: {
-              datasource: options,
-            },
           }),
         },
       },
@@ -65,7 +55,16 @@ export const sellerInformationConfig: ISchema['properties'] = {
         type: SchemaTypesEnum.OBJECT,
         'x-decorator': IntlCard,
         properties: {
-          subTitle: create.title('Company Information'),
+          subTitle: create.title('Company Information', 'large'),
+          legalEntityType: create.select({
+            type: 'string',
+            title: title2,
+            options,
+            // description: description2,
+            componentProps: {
+              datasource: options,
+            },
+          }),
           certificate: create.upload({
             title: 'Certifivate of Business',
             componentProps: {

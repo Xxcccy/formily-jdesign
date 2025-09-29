@@ -33,6 +33,22 @@ body {
   flex-direction: column;
 }
 
+.formily-jd-design-form-item-layout-vertical
+  .formily-jd-design-form-item-label-content {
+  min-height: 16px !important;
+}
+
+.formily-jd-design-form-item-layout-vertical
+  .formily-jd-design-form-item-label
+  * {
+  line-height: 16px !important;
+  margin-bottom: 4px;
+}
+
+.formily-jd-design-form-item-feedback-layout-loose {
+  margin-bottom: 0 !important;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

@@ -1,21 +1,30 @@
 <template>
   <div class="step">
-    <JdCard>
-      <JdSteps
-        :active="active"
-        finish-status="success"
-        fill-color="var(--jd-color-surface-200)"
-      >
-        <JdStep
-          v-for="(title, index) in titles"
-          :key="index"
-          :title="title.label"
-        />
-      </JdSteps>
-    </JdCard>
+    <!-- 吸顶的 Steps 组件 -->
+    <div class="step__header">
+      <JdCard>
+        <JdSteps
+          :active="active"
+          finish-status="success"
+          fill-color="var(--jd-color-surface-200)"
+        >
+          <JdStep
+            v-for="(title, index) in titles"
+            :key="index"
+            :title="title.label"
+          />
+        </JdSteps>
+      </JdCard>
+    </div>
 
-    <slot :active="active"></slot>
+    <!-- 可滚动的内容区域 -->
+    <div class="step__content">
+      <div class="step__content-inner">
+        <slot :active="active"></slot>
+      </div>
+    </div>
 
+    <!-- 吸底的按钮组 -->
     <div class="step__actions">
       <JdButton v-show="active === 1" @click="() => active--">
         Previous

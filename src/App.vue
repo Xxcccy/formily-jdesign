@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100%; padding: 0 30%">
+  <div style="height: 100%; padding: 0 10%">
     <jd-config-provider :size="size" :z-index="zIndex">
       <IntlStep v-slot="slotProps">
         <IntlForm :schema="getSchema(slotProps.active)" :form="form" />
