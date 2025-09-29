@@ -12,12 +12,14 @@ const reactions = (field: Field) => {
 
 const create = useCreate()
 
-export const businessInformationConfig: ISchema = {
-  type: SchemaTypesEnum.OBJECT,
-  'x-decorator': IntlCard,
-  properties: {
-    title: create.title('Business Information', 'large'),
-    optionsModel: create.selectModel(SchemaTypesEnum.OBJECT),
-    ttt: create.input({ title: 'TTT', reactions }),
+export const businessInformationConfig: ISchema['properties'] = {
+  businessInformation: {
+    type: SchemaTypesEnum.OBJECT,
+    'x-decorator': IntlCard,
+    properties: {
+      title: create.title('Business Information', 'large'),
+      optionsModel: create.selectModel(SchemaTypesEnum.OBJECT),
+      ttt: create.input({ title: 'TTT', reactions }),
+    },
   },
 }

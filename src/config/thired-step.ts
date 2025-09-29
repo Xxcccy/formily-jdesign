@@ -5,10 +5,12 @@ import IntlCard from '../components/intlCard'
 
 const create = useCreate()
 
-export const sellerReviewConfig: ISchema = {
-  type: SchemaTypesEnum.OBJECT,
-  'x-decorator': IntlCard,
-  properties: {
-    ccc: create.input({ title: 'ccc' }),
+export const sellerReviewConfig: ISchema['properties'] = {
+  sellerReview: {
+    type: SchemaTypesEnum.OBJECT,
+    'x-decorator': IntlCard,
+    properties: {
+      ccc: create.input({ title: 'ccc' }),
+    },
   },
 }

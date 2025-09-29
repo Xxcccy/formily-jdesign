@@ -28,50 +28,46 @@ const options = [
 
 const create = useCreate()
 
-export const sellerInformationConfig: ISchema = {
-  type: SchemaTypesEnum.VOID,
-  properties: {
-    sellerInformation: {
-      type: SchemaTypesEnum.VOID,
-      'x-decorator': IntlCard,
-      properties: {
-        title_1: create.title('Invitation Code', 'large'),
-        title_2: create.title('Invitation Code'),
-        invitationCode: create.input({
-          title: title1,
-          description: description1,
-          componentProps: { maxlength: 10 },
-        }),
+export const sellerInformationConfig: ISchema['properties'] = {
+  sellerInformation: {
+    type: SchemaTypesEnum.VOID,
+    properties: {
+      card_1: {
+        type: SchemaTypesEnum.VOID,
+        'x-decorator': IntlCard,
+        properties: {
+          title_1: create.title('Invitation Code', 'large'),
+          title_2: create.title('Invitation Code'),
+          invitationCode: create.input({
+            title: title1,
+            description: description1,
+            componentProps: { maxlength: 10 },
+          }),
+          subTitle: create.title('Legal Entity Type'),
+          legalEntityType: create.select({
+            type: 'string',
+            title: title2,
+            options,
+            description: description2,
+            decoratorProps: { labelWrap: true, labelAlign: 'right' },
+            componentProps: {
+              datasource: options,
+            },
+          }),
+        },
       },
-    },
-    legalEntityType: {
-      type: SchemaTypesEnum.OBJECT,
-      'x-decorator': IntlCard,
-      properties: {
-        subTitle: create.title('Legal Entity Type'),
-        region: create.select({
-          type: 'string',
-          title: title2,
-          options,
-          description: description2,
-          decoratorProps: { labelWrap: true, labelAlign: 'right' },
-          componentProps: {
-            datasource: options,
-          },
-        }),
-      },
-    },
-    companyInformation: {
-      type: SchemaTypesEnum.OBJECT,
-      'x-decorator': IntlCard,
-      properties: {
-        subTitle: create.title('Company Information'),
-        certificate: create.upload({
-          title: 'Certifivate of Business',
-          componentProps: {
-            action: 'https://feqd-ftf.jd.com/api/jdesign/upload',
-          },
-        }),
+      companyInformation: {
+        type: SchemaTypesEnum.OBJECT,
+        'x-decorator': IntlCard,
+        properties: {
+          subTitle: create.title('Company Information'),
+          certificate: create.upload({
+            title: 'Certifivate of Business',
+            componentProps: {
+              action: 'https://feqd-ftf.jd.com/api/jdesign/upload',
+            },
+          }),
+        },
       },
     },
   },

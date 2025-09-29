@@ -35,17 +35,11 @@ const getSchema = (config: string | number): ISchema => {
   let configProperties = {}
 
   if (config === ConfigEnum.SELLER_INFORMATION) {
-    configProperties = {
-      sellerInformation: sellerInformationConfig,
-    }
+    configProperties = sellerInformationConfig
   } else if (config === ConfigEnum.BUSINESS_INFORMATION) {
-    configProperties = {
-      businessInformation: businessInformationConfig,
-    }
+    configProperties = businessInformationConfig
   } else {
-    configProperties = {
-      sellerReview: sellerReviewConfig,
-    }
+    configProperties = sellerReviewConfig
   }
 
   return {
