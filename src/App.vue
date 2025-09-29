@@ -9,10 +9,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, provide, computed } from 'vue'
 import { createForm } from '@formily/core'
 import { ISchema } from '@formily/vue'
 import { JdConfigProvider } from '@jd/jdesign-vue'
+import { provide, ref } from 'vue'
 import IntlForm from './components/intlForm'
 import IntlStep from './components/intlStep'
 import {
@@ -34,12 +34,16 @@ const create = useCreate()
 const getSchema = (config: string | number): ISchema => {
   let configProperties = {}
 
-  if (config === ConfigEnum.SELLER_INFORMATION) {
-    configProperties = sellerInformationConfig
-  } else if (config === ConfigEnum.BUSINESS_INFORMATION) {
-    configProperties = businessInformationConfig
-  } else {
-    configProperties = sellerReviewConfig
+  switch (config) {
+    case ConfigEnum.SELLER_INFORMATION:
+      configProperties = sellerInformationConfig
+      break
+    case ConfigEnum.BUSINESS_INFORMATION:
+      configProperties = businessInformationConfig
+      break
+    default:
+      configProperties = sellerReviewConfig
+      break
   }
 
   return {
