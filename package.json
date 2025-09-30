@@ -16,6 +16,7 @@
     "@jd/jdesign-vue": "^2.0.8",
     "resize-observer-polyfill": "^1.5.1",
     "vue": "^3.5.13",
+    "vue-router": "^4.5.1",
     "vuedraggable": "^2.24.3"
   },
   "devDependencies": {

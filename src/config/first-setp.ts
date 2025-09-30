@@ -44,7 +44,7 @@ export const sellerInformationConfig: ISchema['properties'] = {
           title_2: create.title('Invitation Code'),
           invitationCode: create.input({
             title: title1,
-            // description: description1,
+            description: description1,
             triggerType: 'onBlur',
             validator: checkInvitationCode,
             componentProps: { maxlength: 10 },
@@ -56,22 +56,45 @@ export const sellerInformationConfig: ISchema['properties'] = {
         'x-decorator': IntlCard,
         properties: {
           subTitle: create.title('Company Information', 'large'),
-          legalEntityType: create.select({
-            type: 'string',
-            title: title2,
-            options,
-            // description: description2,
+          owner: create.owner({
             componentProps: {
-              datasource: options,
+              formItemGroup: [
+                {
+                  component: 'SELECT',
+                  label: 'ID Type',
+                  code: 'idType',
+                  options: options,
+                  style: {
+                    width: '418px',
+                  },
+                },
+                {
+                  component: 'SELECT',
+                  label: 'Certificate of Business',
+                  code: 'certificate',
+                  options: options,
+                  style: {
+                    width: '418px',
+                  },
+                },
+                {
+                  component: 'UPLOAD',
+                  label: 'photo',
+                  code: 'photo',
+                  extra: 'Only supports jpg, jpeg, max size 8MB.',
+                  action: 'https://feqd-ftf.jd.com/api/jdesign/upload',
+                },
+                {
+                  component: 'INPUT',
+                  label: 'fullName',
+                  code: 'fullName',
+                  style: {
+                    width: '100%',
+                  },
+                },
+              ],
             },
           }),
-          certificate: create.upload({
-            title: 'Certifivate of Business',
-            componentProps: {
-              action: 'https://feqd-ftf.jd.com/api/jdesign/upload',
-            },
-          }),
-          owner: create.owner(),
         },
       },
     },

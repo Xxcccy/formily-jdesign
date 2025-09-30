@@ -3,64 +3,100 @@
     <div v-for="(item, index) in modelValue">
       <JdDivider v-if="index > 0" />
       <FormLayout layout="vertical">
-        <div style="display: flex; justify-content: space-between">
-          <IntlFormItem label="123" style="padding: 0">
-            <JdSelect v-model="item.idType"></JdSelect>
-          </IntlFormItem>
-          <IntlFormItem label="456" style="padding: 0">
-            <IntlSelect
-              v-model="item.country"
-              :datasource="options"
-            ></IntlSelect>
-          </IntlFormItem>
+        <div class="form-container">
+          <template
+            v-for="(formItem, formIndex) in formItemGroup"
+            :key="formIndex"
+          >
+            <div :class="getFormItemWrapperClass(formItem, formIndex)">
+              <IntlFormItem v-bind="formItem">
+                <component
+                  v-if="formItem?.component !== 'UPLOAD'"
+                  v-model="item[formItem?.code]"
+                  :is="Components[formItem?.component]"
+                  :datasource="formItem?.options"
+                  :style="getComponentStyle(formItem)"
+                />
+                <component
+                  v-else-if="formItem?.component === 'UPLOAD'"
+                  v-model:file-list="item[formItem?.code]"
+                  :is="Components[formItem?.component]"
+                  :action="formItem?.action"
+                />
+              </IntlFormItem>
+            </div>
+          </template>
         </div>
-        <IntlFormItem label="789" style="padding: 0">
-          <IntlUpload
-            v-model:file-list="item.photo"
-            action="https://feqd-ftf.jd.com/api/jdesign/upload"
-            list-type="picture-card"
-          />
-        </IntlFormItem>
-        <IntlFormItem label="xx" style="padding: 0">
-          <IntlInput v-model="item.fullName" />
-        </IntlFormItem>
-        <IntlFormItem label="cc" style="padding: 0">
-          <IntlInput v-model="item.idNumber" />
-        </IntlFormItem>
       </FormLayout>
     </div>
-    <JdButton type="text" @click="modelValue.push({})">Add</JdButton>
+    <div>
+      <JdButton
+        v-if="modelValue.length < 4"
+        text
+        type="primary"
+        @click="modelValue.push({})"
+      >
+        Add
+      </JdButton>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { JdButton, JdDivider, JdSelect } from '@jd/jdesign-vue'
+import { JdButton, JdDivider } from '@jd/jdesign-vue'
 import { FormLayout } from '../../formily-dongdesign'
 import IntlFormItem from '../intlFormItem'
 import IntlInput from '../intlInput'
 import IntlSelect from '../intlSelect'
 import IntlUpload from '../intlUpload'
 
-const modelValue = defineModel<Array<Record<string, any>>>()
-modelValue.value = [{}]
+const props = defineProps<{
+  formItemGroup?: Array<Record<string, any>>
+}>()
 
-const options = [
-  {
-    label: 'China Mainland',
-    value: 1,
-    icon: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-  },
-  {
-    label: 'Hong Kong, China',
-    value: 2,
-    icon: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-  },
-  {
-    label: 'United Kingdom',
-    value: 3,
-    icon: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-  },
-]
+const modelValue = defineModel<Array<Record<string, any>>>()
+if (!modelValue.value || modelValue.value.length === 0) {
+  modelValue.value = [{}]
+}
+
+const Components = {
+  INPUT: IntlInput,
+  SELECT: IntlSelect,
+  UPLOAD: IntlUpload,
+}
+
+// 获取表单项包装器的CSS类
+const getFormItemWrapperClass = (
+  formItem: Record<string, any>,
+  index: number,
+): string => {
+  if (formItem.component === 'SELECT') {
+    const prevItem = props.formItemGroup[index - 1]
+    const nextItem = props.formItemGroup[index + 1]
+
+    if (
+      (prevItem && prevItem.component === 'SELECT') ||
+      (nextItem && nextItem.component === 'SELECT')
+    ) {
+      return 'select-inline-item'
+    }
+  }
+  return 'form-item-wrapper'
+}
+
+const getComponentStyle = (
+  formItem: Record<string, any>,
+): Record<string, any> => {
+  if (formItem.component === 'SELECT') {
+    return {
+      ...formItem.style,
+      width: '100%',
+    }
+  }
+  return formItem.style || {}
+}
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+@import './index.scss';
+</style>

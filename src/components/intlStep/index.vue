@@ -40,7 +40,8 @@
 <script setup lang="ts">
 import { Form } from '@formily/core'
 import { JdButton, JdCard, JdStep, JdSteps } from '@jd/jdesign-vue'
-import { inject, ref } from 'vue'
+import { inject, nextTick, ref } from 'vue'
+import { scrollToField, setFieldError } from '../../utils'
 
 defineOptions({
   name: 'Step',
@@ -61,8 +62,18 @@ const titles = [
 const active = ref(0)
 const form: Form = inject('form')
 
-const submit = () => {
-  console.log(JSON.parse(JSON.stringify(form.values)))
+nextTick(() => {
+  // 设置字段错误
+  setFieldError(form, 'fullName', 'This field has an error')
+})
+
+const submit = async () => {
+  try {
+    await form.validate()
+    console.log(JSON.parse(JSON.stringify(form.values)))
+  } catch (e) {
+    scrollToField()
+  }
 }
 </script>
 

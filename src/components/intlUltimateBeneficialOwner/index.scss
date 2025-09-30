@@ -1,0 +1,20 @@
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.form-item-wrapper {
+  flex: 0 0 100%;
+}
+
+.select-inline-item {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* 确保单独的SELECT组件不会拉伸 */
+.select-inline-item:only-child {
+  flex: 0 0 auto;
+  max-width: 418px;
+}

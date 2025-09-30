@@ -2,6 +2,7 @@
   <JdUpload
     class="upload"
     v-bind="attrs"
+    list-type="picture-card"
     :on-success="handleSuccess"
     :on-preview="handlePictureCardPreview"
   >

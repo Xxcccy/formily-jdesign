@@ -70,6 +70,8 @@ export function useCreate() {
     options,
     description,
     decoratorProps,
+    validator = () => {},
+    triggerType,
     componentProps,
   }: SelectConfig = {}): ISchema => {
     return {
@@ -80,6 +82,10 @@ export function useCreate() {
       'x-component': IntlSelect,
       'x-decorator-props': decoratorProps,
       'x-component-props': componentProps,
+      'x-validator': {
+        triggerType,
+        validator,
+      },
       enum: options,
     }
   }
@@ -128,7 +134,6 @@ export function useCreate() {
     return {
       type,
       'x-component': IntlOwner,
-      'x-decorator': IntlFormItem,
       'x-component-props': componentProps,
     }
   }

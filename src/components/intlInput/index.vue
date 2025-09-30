@@ -13,7 +13,7 @@ defineOptions({
 })
 
 const attrs = useAttrs()
-const modelValue = defineModel<string>()
+const modelValue = defineModel<string | number>()
 
 defineExpose({} as ComponentInstance<typeof JdInput>)
 </script>
